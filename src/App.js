@@ -7,9 +7,9 @@ import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Home from './Pages/Home.js';
-import Products from './Pages/Products.js';
-import Contact from './Pages/Contact.js';
+import Home from './pages/Home.js';
+import Products from './pages/Products.js';
+import Contact from './pages/Contact.js';
 import {
   BrowserRouter as Router,
   Switch,

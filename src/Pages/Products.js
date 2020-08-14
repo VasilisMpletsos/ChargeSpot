@@ -1,9 +1,12 @@
 import React from 'react';
+import Container from '@material-ui/core/Container';
 
 class Products extends React.Component{
   render(){
     return(
-      <h1>Products</h1>
+      <Container>
+        <h1>Products</h1>
+      </Container>
     )
   }
 }
