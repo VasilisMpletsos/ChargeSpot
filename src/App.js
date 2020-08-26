@@ -10,6 +10,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Home from './pages/Home.js';
 import Products from './pages/Products.js';
 import Contact from './pages/Contact.js';
+import Login from './pages/Login.js';
+import Sign from './pages/Sign.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,6 +36,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     link: {
       textDecoration: 'none',
+    },
+    signLogin: {
+      textDecoration: 'none',
+      color: 'white',
+      fontSize: 'normal',
     }
   }),
 );
@@ -67,8 +74,8 @@ export default function MenuAppBar() {
           <Typography variant="h6" className={classes.title}>
             Charge Spot
           </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Sign Up</Button>
+          <Button ><Link className={classes.signLogin} to="/login">Login</Link></Button>
+          <Button ><Link className={classes.signLogin} to="/sign">Sign Up</Link></Button>
         </Toolbar>
       </AppBar>
       <Switch>
@@ -77,6 +84,12 @@ export default function MenuAppBar() {
           </Route>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/sign">
+            <Sign />
           </Route>
           <Route path="/">
             <Home />

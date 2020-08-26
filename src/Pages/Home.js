@@ -23,10 +23,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Menu(){
+export default function Home(){
     const classes = useStyles();
     return(
-      <div>
       <Container>
         <h1>Home</h1>
         <div className={classes.home}>
@@ -36,6 +35,5 @@ export default function Menu(){
           <Typography >Charge Spot is a project to be constructed in the port of Thessaloniki</Typography>
         </div>
       </Container>
-      </div>
     )
   }
