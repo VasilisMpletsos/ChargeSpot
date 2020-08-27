@@ -96,7 +96,7 @@ class Login extends React.Component {
             </Box>
             <Box display="flex" className={classes.send} alignItems="center" justifyContent="center">
             <Button type="submit" className={classes.sendButton} variant="contained" startIcon={<SendIcon />} color="primary">
-              Sign Up
+              Login
             </Button>
             </Box>
         </form>

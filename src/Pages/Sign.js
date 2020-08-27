@@ -15,7 +15,8 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 import { Redirect } from "react-router-dom";
 
 const useStyles = (theme) => ({
@@ -31,7 +32,7 @@ const useStyles = (theme) => ({
     minWidth: 100,
   },
   send:{
-    marginTop: '2%',
+    marginTop: '5%',
     width: '100%',
   },
   sendButton: {
@@ -54,11 +55,14 @@ class Sign extends React.Component {
       showInfo: false,
       info: '',
       redirect: null,
+      infoType: ''
     };
   }
 
-  componentDidMount(){
-    document.getElementById('info').style = {display: 'none'};
+  hideInfo(){
+    setTimeout(()=>{
+      this.setState({showInfo: false});
+    },5000)
   }
 
   myChangeHandler = (event) => {
@@ -69,37 +73,50 @@ class Sign extends React.Component {
 
   formSubmit = (event) => {
     event.preventDefault();
-    if(this.state.password !== this.state.password2){
-      this.setState({info: 'Wrong! Passwords Should Match'});
-      this.setState({showInfo: true});
+    if(this.state.password.length <= 7){
+      this.setState({info: 'Passwrod Should be at least 7 Charachters Long!',showInfo: true,infoType: 'error'});
+      this.hideInfo();
+      return
     }else{
-      fetch('http://localhost:4444/add', {
-        method: 'POST',
-        body: JSON.stringify({
-          username: this.state.username,
-          email: this.state.email,
-          gender: this.state.gender,
-          password: this.state.password,
-          birth: this.state.birth,
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-      }).then((res)=>{
-        console.log(res);
-        if(res.status === 406){
-          res.json().then((data)=>{
-            this.setState({info: `${data.info}`});
-            this.setState({showInfo: true});
-          });
+      if(this.state.password !== this.state.password2){
+        this.setState({info: 'Passwrods Should Match!',showInfo: true,infoType: 'error'});
+        this.hideInfo();
+      }else{
+        if(this.state.username.length <= 6){
+          this.setState({info: 'Username Should be at least 6 Charachters Long!',showInfo: true,infoType: 'error'});
+          this.hideInfo();
         }else{
-          document.getElementById('signup').reset();
-          this.setState({ redirect: "/login" });
+          fetch('http://localhost:4444/add', {
+            method: 'POST',
+            body: JSON.stringify({
+              username: this.state.username,
+              email: this.state.email,
+              gender: this.state.gender,
+              password: this.state.password,
+              birth: this.state.birth,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          }).then((res)=>{
+            console.log(res);
+            if(res.status === 406){
+              res.json().then((data)=>{
+                this.setState({info: `${data.info}`});
+                this.setState({showInfo: true});
+              });
+            }else{
+              document.getElementById('signup').reset();
+              this.setState({info: 'Account Created',showInfo: true,infoType: 'success'});
+              this.hideInfo();
+              //this.setState({ redirect: "/login" });
+            }
+          }).catch(()=>{
+            this.setState({info: 'Server is currently unavaible!',showInfo: true,infoType: 'error'});
+            this.hideInfo();
+          })
         }
-      }).catch(()=>{
-        this.setState({info: 'Server is currently unavaible!'});
-        this.setState({showInfo: true});
-      })
+      }
     }
   }
 
@@ -180,7 +197,6 @@ class Sign extends React.Component {
             name="birth"
             label="Birthday"
             type="date"
-            defaultValue="2000-01-01"
             className={classes.input}
           />
           </Grid>
@@ -205,21 +221,21 @@ class Sign extends React.Component {
               </Select>
           </Grid>
         </Grid>
-        <Box id="info" display="flex" className={classes.send} alignItems="center" justifyContent="center">
-        {this.state.showInfo &&
-        <Alert severity="error">
-        <AlertTitle>Error</AlertTitle>
-          <strong>{this.state.info}</strong>
-        </Alert>
-        }
-        </Box>
         <Box display="flex" className={classes.send} alignItems="center" justifyContent="center">
         <Button type="submit" className={classes.sendButton} variant="contained" startIcon={<SendIcon />} color="primary">
-          Sign Up
+          Signup
         </Button>
         </Box>
       </form>
       </Box>
+      <Snackbar
+        open={this.state.showInfo}
+        anchorOrigin={{horizontal: 'right',vertical: 'bottom'}}
+        >
+        <Alert color={this.state.infoType} variant="filled" severity="error">
+          {this.state.info}
+        </Alert>
+     </Snackbar>
       </Container>
     );
   }
