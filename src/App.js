@@ -12,6 +12,7 @@ import Products from './pages/Products.js';
 import Contact from './pages/Contact.js';
 import Login from './pages/Login.js';
 import Sign from './pages/Sign.js';
+import Hidden from '@material-ui/core/Hidden';
 import {
   BrowserRouter as Router,
   Switch,
@@ -71,11 +72,13 @@ export default function MenuAppBar() {
             <MenuItem onClick={handleClose}><Link className={classes.link} to="/products">Products</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link className={classes.link} to="/contact">Contact</Link></MenuItem>
           </Menu>
-          <Typography variant="h6" className={classes.title}>
+          <Hidden xsDown={true}>
+          <Typography variant="h6"  className={classes.title}>
             Charge Spot
           </Typography>
+          </Hidden>
           <Button ><Link className={classes.signLogin} to="/login">Login</Link></Button>
-          <Button ><Link className={classes.signLogin} to="/sign">Sign Up</Link></Button>
+          <Button ><Link className={classes.signLogin} to="/sign">Signup</Link></Button>
         </Toolbar>
       </AppBar>
       <Switch>
