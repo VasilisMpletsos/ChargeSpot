@@ -6,7 +6,7 @@ import classes from './Contact.module.css';
 const Contact = () => (
     <Box>
         <h1>Contact</h1>
-        <Box boxShadow={4}>
+        <Box boxShadow={7}>
             <Grid container alignItems="center" direction="row">
                 <Grid className={classes.Contact} item xs={12} sm={6}>Phone: +30-69944048324</Grid>
                 <Grid className={classes.Contact} item xs={12} sm={6}>Email: mpletsos@ece.auth.gr</Grid>

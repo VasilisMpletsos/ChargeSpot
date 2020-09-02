@@ -1,0 +1,14 @@
+.Signup{
+    padding: 2%;
+}
+
+.SignupItem{
+    text-align: center;
+    padding: 2%;
+}
+
+.Sendbutton{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 2%;
+}
