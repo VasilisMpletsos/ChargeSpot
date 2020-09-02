@@ -1,0 +1,24 @@
+.Navbar{
+    width: 100%;
+}
+
+.Logsign{
+    position: absolute;
+    right: 0;
+}
+
+.Dropdown{
+    margin-top: 40px;
+}
+
+.NavBar a{
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+    font-family: sans-serif;
+}
+
+.NavBar a:hover{
+    text-decoration: none;
+    color: #00ff00;
+}
