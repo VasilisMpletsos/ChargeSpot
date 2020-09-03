@@ -12,13 +12,21 @@
 }
 
 .NavBar a{
+    height: 100%;
     text-decoration: none;
     color: white;
     font-size: medium;
     font-family: sans-serif;
 }
 
-.NavBar a:hover{
+.NavBar a:active,
+.NavBar a.active{
     text-decoration: none;
     color: #00ff00;
+    font-weight: bolder;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    border-bottom: 2px solid #0f0;
+    border-top: 2px solid #0f0;
 }

@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Hidden from '@material-ui/core/Hidden';
 import classes from './NavBar.module.css';
 import {
-  Link
+ Link, NavLink
 } from "react-router-dom";
 
 
@@ -41,8 +41,8 @@ const NavBar = () => {
             </Typography>
           </Hidden>
           <div className={classes.Logsign}>
-            <Button ><Link className={classes.Link} to="/login">Login</Link></Button>
-            <Button ><Link className={classes.Link} to="/signup">Signup</Link></Button>
+            <Button ><NavLink activeClassName={classes.active} to="/login">Login</NavLink></Button>
+            <Button ><NavLink activeClassName={classes.active} to="/signup">Signup</NavLink></Button>
           </div>
         </Toolbar>
     </AppBar>
