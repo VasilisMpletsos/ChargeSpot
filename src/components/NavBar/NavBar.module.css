@@ -10,13 +10,22 @@
 .Dropdown{
     margin-top: 40px;
 }
+.Dropdown a{
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+}
+
+.MenuItem{
+    background-color: salmon;
+}
 
 .NavBar a{
     height: 100%;
     text-decoration: none;
     color: white;
-    font-size: medium;
-    font-family: sans-serif;
+    font-family: serif;
+    font-size: large;
 }
 
 .NavBar a:active,

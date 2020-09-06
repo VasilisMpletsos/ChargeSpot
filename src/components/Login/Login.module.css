@@ -1,4 +1,6 @@
-.Signup{
+
+.Login{
+    width: 100%;
     padding-bottom: 2%;
 }
 
@@ -6,25 +8,21 @@
     text-align: center;
 }
 
-.SignupItem{
-    text-align: center;
-    padding: 2%;
-}
-
-.Sendbutton{
-    width: 100%;
-    text-align: center;
-    padding-bottom: 2%;
+.Title{
+    padding-top: 30px;
 }
 
 .Input{
-    width:  90%;
+    width: 70%;
 }
 
-.button{
+.SendBox{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 2%;
+    padding-top: 2%;
+}
+
+.Sendbutton{
     width: 200px;
-}
-
-.Title{
-    padding-top: 30px;
 }

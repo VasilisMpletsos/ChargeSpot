@@ -4,7 +4,7 @@ import Products from '../Products/Products';
 import Contact from '../Contact/Contact';
 import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
-import { Switch , Route , Redirect} from 'react-router-dom';
+import { Switch , Route } from 'react-router-dom';
 
 const SwitchPages = () => (
     <Switch>

@@ -2,9 +2,9 @@ import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import SwitchPages from '../../components/SwitchPages/SwitchPages';
 
-const Layout = () => (
+const Layout = (props) => (
       <div >
-        <NavBar/>
+        <NavBar darkMode={props.darkMode}/>
         <SwitchPages/>
       </div>
 )

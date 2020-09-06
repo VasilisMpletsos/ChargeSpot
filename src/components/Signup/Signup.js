@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from 'react';
+import React , { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import validator from 'validator';
 import Box from '@material-ui/core/Box';
@@ -14,8 +14,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
+import { useTheme } from '@material-ui/core/styles';
 
 const Signup = () => {
+
+    const theme = useTheme();
 
     const [showInfo, setShowInfo] = React.useState({
         show: false,
@@ -28,7 +31,8 @@ const Signup = () => {
         errorPassword: false,
         errorEmail: false,
         errorMatch: false,
-        errorDate: false
+        errorDate: false,
+        errorGender: false
     });
 
     const [state, changeState] = useState({
@@ -36,16 +40,14 @@ const Signup = () => {
         email: '',
         password: '',
         password2: '',
-        birth: ''
+        birth: '',
+        checkedTerms: false,
+        checkedNotifications: false,
     })
 
-    const [check, setCheck] = React.useState({
-        checkedA: false,
-        checkedB: false,
-      });
-
       const handleCheck = (event) => {
-        setCheck({ ...check, [event.target.name]: event.target.checked });
+          console.log(event.target.name, event.target.checked)
+        changeState({ ...state, [event.target.name]: event.target.checked });
       };
 
     const inputHandler = (event) => {
@@ -73,6 +75,7 @@ const Signup = () => {
     const [gender, setGender] = React.useState('');
 
     const handleGender = (event) => {
+        console.log(gender);
         setGender(event.target.value);
     };
 
@@ -101,10 +104,10 @@ const Signup = () => {
             error = true;
             message = 'You must provide a valid date!';
             setErrors({errorDate: true});
-        }else if(gender === null){
+        }else if(gender === ''){
             error = true;
             message = 'You must determine gender!';
-            setErrors({errorDate: true});
+            setErrors({errorGender: true});
         }
 
         if(error){
@@ -112,14 +115,15 @@ const Signup = () => {
         }else{
             message = 'Request for signup sent!';
             showMessage(message,'success');
+            console.log(state);
         }
 
     }
 
     return(
     <Box>
-        <h1>Signup</h1>
-        <Box boxShadow={7}>
+        <Box className={classes.MainBox} boxShadow={7}> 
+            <h1 className={classes.Title}>SignUp</h1>
             <form onSubmit={sendHandler}>
             <Grid className={classes.Signup} container alignItems="center" direction="row">
                 <Grid className={classes.SignupItem} item xs={12} md={6}><TextField className={classes.Input} name="username" error={errors.errorName} onChange={(event)=>inputHandler(event)} label="Username" variant="outlined" /></Grid>
@@ -145,6 +149,7 @@ const Signup = () => {
                         <Select
                         labelId="gender"
                         id="gender"
+                        error={errors.errorGender}
                         style={{width: '100%'}}
                         value={gender}
                         onChange={handleGender} label="Gender"
@@ -157,11 +162,11 @@ const Signup = () => {
                 </Grid>
             </Grid>
             <Grid style={{paddingBottom: '2%'}} container direction='column' alignItems='center'>
-                <Grid><Switch name="checkedA" checked={check.checkedA} onChange={handleCheck} style={{display: 'inline'}} color="primary"/><Typography style={{display: 'inline'}}>Agree in terms of use</Typography></Grid>
-                <Grid><Switch name="checkedB" checked={check.checkedB} onChange={handleCheck} style={{display: 'inline'}} color="primary"/><Typography style={{display: 'inline'}}>Accept Email Notifications</Typography></Grid>
+                <Grid><Switch name="checkedTerms" checked={state.checkedA} onChange={handleCheck} style={{display: 'inline'}} color="primary"/><Typography style={{display: 'inline'}}>Agree in terms of use</Typography></Grid>
+                <Grid><Switch name="checkedNotifications" checked={state.checkedB} onChange={handleCheck} style={{display: 'inline'}} color="primary"/><Typography style={{display: 'inline'}}>Accept Email Notifications</Typography></Grid>
             </Grid>
             <Box className={classes.Sendbutton}>
-                <Button type="submit" disabled={!check.checkedA} variant="contained" color="primary" className={classes.button} startIcon={<SendIcon/>}>Send</Button>
+                <Button type="submit" disabled={!state.checkedTerms} variant="contained" color='primary' className={classes.button} startIcon={<SendIcon/>}>Send</Button>
             </Box>
             </form>
             <Snackbar open={showInfo.show} autoHideDuration={10000} onClose={closeHandler} anchorOrigin={{vertical:'bottom', horizontal:'right'}}>

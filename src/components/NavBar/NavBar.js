@@ -8,12 +8,13 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Hidden from '@material-ui/core/Hidden';
 import classes from './NavBar.module.css';
+import Switch from '@material-ui/core/Switch';
 import {
  Link, NavLink
 } from "react-router-dom";
 
 
-const NavBar = () => {
+const NavBar = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -28,7 +29,7 @@ const NavBar = () => {
     <AppBar position="static" className={classes.NavBar}>
         <Toolbar className={classes.NavBar}>
           <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-            <MenuIcon fontSize="large" style={{color: '#00ff00'}} />
+            <MenuIcon fontSize="large" color='secondary' />
           </Button>
           <Menu className={classes.Dropdown} anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
              <MenuItem onClick={handleClose}><Link to="/">Home</Link></MenuItem>
@@ -41,6 +42,7 @@ const NavBar = () => {
             </Typography>
           </Hidden>
           <div className={classes.Logsign}>
+            <Switch onClick={props.darkMode}></Switch>
             <Button ><NavLink activeClassName={classes.active} to="/login">Login</NavLink></Button>
             <Button ><NavLink activeClassName={classes.active} to="/signup">Signup</NavLink></Button>
           </div>
