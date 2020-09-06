@@ -8,7 +8,15 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Hidden from '@material-ui/core/Hidden';
 import classes from './NavBar.module.css';
+import Drawer from '@material-ui/core/Drawer';
+import SettingsIcon from '@material-ui/icons/Settings';
 import Switch from '@material-ui/core/Switch';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {
  Link, NavLink
 } from "react-router-dom";
@@ -17,6 +25,16 @@ import {
 const NavBar = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleDrawerOpen = () => {
+      setOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+      setOpen(false);
+    };
+
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -24,7 +42,6 @@ const NavBar = (props) => {
     const handleClose = () => {
       setAnchorEl(null);
     };
-
     return(
     <AppBar position="static" className={classes.NavBar}>
         <Toolbar className={classes.NavBar}>
@@ -42,11 +59,23 @@ const NavBar = (props) => {
             </Typography>
           </Hidden>
           <div className={classes.Logsign}>
-            <Switch onClick={props.darkMode}></Switch>
             <Button ><NavLink activeClassName={classes.active} to="/login">Login</NavLink></Button>
             <Button ><NavLink activeClassName={classes.active} to="/signup">Signup</NavLink></Button>
+            <Button ><SettingsIcon onClick={handleDrawerOpen}></SettingsIcon></Button>
           </div>
-        </Toolbar>
+      </Toolbar>
+      <Drawer variant="persistent" anchor="right" open={open}>
+        <List>
+          <ListItem>
+            <Button onClick={handleDrawerClose} startIcon={<ArrowBackIcon/>} color='primary' variant='contained'> Close Settings</Button>
+          </ListItem>
+          <Divider/>
+          <ListItem>
+            <Switch onClick={props.darkMode}></Switch>
+            <ListItemText primary="Dark Mode" />
+          </ListItem>
+        </List>
+      </Drawer>
     </AppBar>
     )
 }

@@ -1,12 +1,10 @@
-import React , { useState , useEffect } from 'react';
+import React , { useState } from 'react';
 import Layout from './containers/Layout/Layout';
 //import Theme from './Theme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { purple , lime , blueGrey } from '@material-ui/core/colors';
-import createPalette from '@material-ui/core/styles/createPalette';
 
 const App = () => {
 
@@ -24,18 +22,20 @@ const App = () => {
         light: purple[200],
         main: purple[700],
         dark: purple[900],
+        contrastText: '#ffffff',
       },
       secondary: {
         light: lime[200],
         main: lime[300],
         dark: blueGrey[900],
+        contrastText: '#ffffff',
       },
       // Used by `getContrastText()` to maximize the contrast between
       // the background and the text.
-      contrastThreshold: 4,
+      contrastThreshold: 5,
       // Used by the functions below to shift a color's luminance by approximately
       // two indexes within its tonal palette.
-      tonalOffset: 1,
+      tonalOffset: 0.5,
     },
   });
 
