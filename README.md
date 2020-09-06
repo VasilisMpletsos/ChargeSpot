@@ -6,7 +6,7 @@ ChargeSpot will be a structure in the port of Thessaloniki providing passengers 
 
 * Add authentication and store a fetched Token in local storage.
 * If authenticated show remaining money.
-* Add products dynamically (maybe with map Locations) whene fetched from database.
+* Add products dynamically (maybe with map Locations) when fetched from database.
 * Add contact form in Contact page.
 * Design Home page and add informations.
 

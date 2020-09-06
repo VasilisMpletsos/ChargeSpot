@@ -8,15 +8,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Hidden from '@material-ui/core/Hidden';
 import classes from './NavBar.module.css';
-import Drawer from '@material-ui/core/Drawer';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Switch from '@material-ui/core/Switch';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Settings from '../SettingsDrawer/SettingsDrawer';
 import {
  Link, NavLink
 } from "react-router-dom";
@@ -64,18 +57,7 @@ const NavBar = (props) => {
             <Button ><SettingsIcon onClick={handleDrawerOpen}></SettingsIcon></Button>
           </div>
       </Toolbar>
-      <Drawer variant="persistent" anchor="right" open={open}>
-        <List>
-          <ListItem>
-            <Button onClick={handleDrawerClose} startIcon={<ArrowBackIcon/>} color='primary' variant='contained'> Close Settings</Button>
-          </ListItem>
-          <Divider/>
-          <ListItem>
-            <Switch onClick={props.darkMode}></Switch>
-            <ListItemText primary="Dark Mode" />
-          </ListItem>
-        </List>
-      </Drawer>
+      <Settings open={open} close={handleDrawerClose} darkMode={props.darkMode}/>
     </AppBar>
     )
 }
