@@ -22,17 +22,15 @@ const App = () => {
         light: purple[200],
         main: purple[700],
         dark: purple[900],
-        contrastText: '#ffffff',
       },
       secondary: {
         light: lime[200],
         main: lime[300],
         dark: blueGrey[900],
-        contrastText: '#ffffff',
       },
       // Used by `getContrastText()` to maximize the contrast between
       // the background and the text.
-      contrastThreshold: 5,
+      contrastThreshold: 1,
       // Used by the functions below to shift a color's luminance by approximately
       // two indexes within its tonal palette.
       tonalOffset: 0.5,

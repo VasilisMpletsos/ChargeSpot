@@ -1,5 +1,6 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
+import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -10,10 +11,10 @@ import Hidden from '@material-ui/core/Hidden';
 import classes from './NavBar.module.css';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Settings from '../SettingsDrawer/SettingsDrawer';
+import green from '@material-ui/core/colors/green';
 import {
  Link, NavLink
 } from "react-router-dom";
-
 
 const NavBar = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -35,6 +36,8 @@ const NavBar = (props) => {
     const handleClose = () => {
       setAnchorEl(null);
     };
+
+
     return(
     <AppBar position="static" className={classes.NavBar}>
         <Toolbar className={classes.NavBar}>
@@ -51,6 +54,7 @@ const NavBar = (props) => {
                 Charge Spot
             </Typography>
           </Hidden>
+          
           <div className={classes.Logsign}>
             <Button ><NavLink activeClassName={classes.active} to="/login">Login</NavLink></Button>
             <Button ><NavLink activeClassName={classes.active} to="/signup">Signup</NavLink></Button>
