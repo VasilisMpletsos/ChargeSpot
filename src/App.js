@@ -2,9 +2,8 @@ import React , { useState } from 'react';
 import Layout from './containers/Layout/Layout';
 //import Theme from './Theme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { purple , lime , blueGrey } from '@material-ui/core/colors';
+import { purple , lime , blue } from '@material-ui/core/colors';
 
 const App = () => {
 
@@ -19,14 +18,14 @@ const App = () => {
     palette: {
       type: palletType,
       primary: {
-        light: purple[200],
-        main: purple[700],
-        dark: purple[900],
+        light: blue[500],
+        main: blue[700],
+        dark: blue[900],
       },
       secondary: {
         light: lime[200],
         main: lime[300],
-        dark: blueGrey[900],
+        dark: lime[400],
       },
       // Used by `getContrastText()` to maximize the contrast between
       // the background and the text.
@@ -40,9 +39,7 @@ const App = () => {
 
   return (
       <MuiThemeProvider theme={theme}>
-        <Paper>
           <Layout darkMode={toggleMode}/>
-        </Paper>
       </MuiThemeProvider>
   );
 }

@@ -14,6 +14,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
+import Paper from '@material-ui/core/Paper';
 
 const Signup = () => {
 
@@ -119,7 +120,7 @@ const Signup = () => {
     }
 
     return(
-    <Box>
+        <Paper>
         <Box className={classes.MainBox} boxShadow={7}> 
             <h1 className={classes.Title}>SignUp</h1>
             <form onSubmit={sendHandler}>
@@ -173,7 +174,7 @@ const Signup = () => {
                 </Alert>
             </Snackbar>
         </Box>
-    </Box>
+        </Paper>
     )
 }
 

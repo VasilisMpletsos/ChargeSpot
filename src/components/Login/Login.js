@@ -8,6 +8,7 @@ import SendIcon from '@material-ui/icons/Send';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import validator from 'validator';
+import Paper from '@material-ui/core/Paper';
   
 
 const Login = () => {
@@ -75,7 +76,7 @@ const Login = () => {
     });
 
     return(
-        <Box>
+        <Paper>
             <Box className={classes.MainBox} boxShadow={7}> 
             <h1 className={classes.Title}>Login</h1>
             <form onSubmit={sendHandler} className={classes.Login}>
@@ -97,7 +98,7 @@ const Login = () => {
                 </Alert>
             </Snackbar>
             </Box>
-        </Box>
+        </Paper>
         )
     }
 
