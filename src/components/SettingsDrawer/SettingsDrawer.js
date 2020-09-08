@@ -18,13 +18,16 @@ const ENDPOINT = "http://localhost:4444/";
 
 const Settings = (props) => {
 
-  const [connectedUsers, setConnectedUsers] = useState(0);
+  const [connectedUsers, setConnectedUsers] = useState('-');
 
     useEffect(() => {
       const socket = socketIOClient(ENDPOINT);
-      socket.on("updateVisitors", data => {
-        setConnectedUsers(data);
-      });
+      socket.on('connect',()=>{
+        console.log('check',socket.connected)
+        socket.on("updateVisitors", data => {
+          setConnectedUsers(data);
+        });
+      })
     }, []);
 
     return(

@@ -37,7 +37,7 @@ const NavBar = (props) => {
 
 
     return(
-    <AppBar position="static" className={classes.NavBar}>
+    <AppBar position="static" style={{background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 67%, rgba(0,212,255,1) 100%)'}} className={classes.NavBar}>
         <Toolbar className={classes.NavBar}>
           <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
             <MenuIcon fontSize="large" color='secondary' />
