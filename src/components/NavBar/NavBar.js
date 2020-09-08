@@ -43,9 +43,9 @@ const NavBar = (props) => {
             <MenuIcon fontSize="large" color='secondary' />
           </Button>
           <Menu className={classes.Dropdown} anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
-             <MenuItem onClick={handleClose}><Link to="/">Home</Link></MenuItem>
-             <MenuItem onClick={handleClose}><Link to="/products">Products</Link></MenuItem>
-             <MenuItem onClick={handleClose}><Link to="/contact">Contact</Link></MenuItem>
+             <MenuItem onClick={handleClose} style={{backgroundColor: 'white'}}><Link to="/">Home</Link></MenuItem>
+             <MenuItem onClick={handleClose} style={{backgroundColor: 'white'}}><Link to="/products">Products</Link></MenuItem>
+             <MenuItem onClick={handleClose} style={{backgroundColor: 'white'}}><Link to="/contact">Contact</Link></MenuItem>
           </Menu>
           <Hidden xsDown={true}>
             <Typography variant="h6">
