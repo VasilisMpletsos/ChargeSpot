@@ -1,18 +1,17 @@
-import React , { useState } from 'react';
-import Layout from './containers/Layout/Layout';
+import React, { useState } from "react";
+import Layout from "./containers/Layout/Layout";
 //import Theme from './Theme';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { purple , lime , blue } from '@material-ui/core/colors';
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { lime, blue } from "@material-ui/core/colors";
 
 const App = () => {
-
   const [darkState, setDarkState] = useState(false);
   const palletType = darkState ? "dark" : "light";
 
   const toggleMode = () => {
     setDarkState(!darkState);
-  }
+  };
 
   const theme = createMuiTheme({
     palette: {
@@ -36,12 +35,11 @@ const App = () => {
     },
   });
 
-
   return (
-      <MuiThemeProvider theme={theme}>
-          <Layout darkMode={toggleMode}/>
-      </MuiThemeProvider>
+    <MuiThemeProvider theme={theme}>
+      <Layout darkMode={toggleMode} />
+    </MuiThemeProvider>
   );
-}
+};
 
 export default App;
