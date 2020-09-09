@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -26,16 +26,21 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Lagada", 20, "Type C + Type B", 5, "Yes"),
-  createData("Lamia", 15, "Type C", 7, "Yes"),
-  createData("Port Thessaloniki", 20, "Type A", 19, "No"),
-  createData("Kleanthous", 7, "Type A", 7, "No"),
-  createData("Toympa", 13, "Type B + Wheelchair", 10, "Yes"),
+const check = [
+  {
+    name: "Agrilia",
+    calories: 20,
+    fat: "Type C + Type B",
+    carbs: 5,
+    protein: "Yes",
+  },
+  {
+    name: "Lamia",
+    calories: 20,
+    fat: "Type C + Type B",
+    carbs: 5,
+    protein: "Yes",
+  },
 ];
 
 const useStyles = makeStyles({
@@ -45,6 +50,14 @@ const useStyles = makeStyles({
 });
 
 const Products = () => {
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    console.log(rows);
+    // Dont use check but fetch data from Server
+    setRows(check);
+  }, []);
+
   const classes = useStyles();
   return (
     <div>
