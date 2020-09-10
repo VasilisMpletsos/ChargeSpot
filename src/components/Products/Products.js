@@ -7,6 +7,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import axios from "../../AxiosBase";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -26,23 +27,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-const check = [
-  {
-    name: "Agrilia",
-    calories: 20,
-    fat: "Type C + Type B",
-    carbs: 5,
-    protein: "Yes",
-  },
-  {
-    name: "Lamia",
-    calories: 20,
-    fat: "Type C + Type B",
-    carbs: 5,
-    protein: "Yes",
-  },
-];
-
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
@@ -54,8 +38,9 @@ const Products = () => {
 
   useEffect(() => {
     console.log(rows);
-    // Dont use check but fetch data from Server
-    setRows(check);
+    axios.get("/products").then((response) => {
+      setRows(response.data);
+    });
   }, []);
 
   const classes = useStyles();
@@ -75,14 +60,14 @@ const Products = () => {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <StyledTableRow key={row.name}>
+              <StyledTableRow key={row.place}>
                 <StyledTableCell component='th' scope='row'>
-                  {row.name}
+                  {row.place}
                 </StyledTableCell>
-                <StyledTableCell align='right'>{row.calories}</StyledTableCell>
-                <StyledTableCell align='right'>{row.fat}</StyledTableCell>
-                <StyledTableCell align='right'>{row.carbs}</StyledTableCell>
-                <StyledTableCell align='right'>{row.protein}</StyledTableCell>
+                <StyledTableCell align='right'>{row.watt}</StyledTableCell>
+                <StyledTableCell align='right'>{row.type}</StyledTableCell>
+                <StyledTableCell align='right'>{row.count}</StyledTableCell>
+                <StyledTableCell align='right'>{row.fast}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
