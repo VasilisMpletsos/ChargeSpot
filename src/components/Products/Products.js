@@ -22,7 +22,7 @@ const Products = () => {
   const data = [
     {
       loc: "https://www.google.com/maps/@40.606982,22.9515786,17z",
-      title: "Lamia",
+      title: "Λαμία, Πλατεία Πάρκου",
       date: "17 Semptember 2020",
       image: image2,
       content: {
@@ -34,7 +34,7 @@ const Products = () => {
     },
     {
       loc: "https://www.google.com/maps/@38.899626,22.4336409,20.04z",
-      title: "Thessaloniki, Port",
+      title: "Θεσσαλονίκη, Λιμάνι",
       date: "20 January 2013",
       image: image1,
       content: {
@@ -46,7 +46,7 @@ const Products = () => {
     },
     {
       loc: "https://www.google.com/maps/@40.6149199,22.9730595,19.13z",
-      title: "Thessaloniki, Toumpa",
+      title: "Θεσσαλονίκη, Τούμπα",
       date: "22 August 2015",
       image: image3,
       content: {
@@ -58,7 +58,7 @@ const Products = () => {
     },
     {
       loc: "https://www.google.com/maps/@37.952012,23.699959,21z",
-      title: "Athina, Kalithea",
+      title: "Αθήνα, Καλλιθέα",
       date: "8 August 2020",
       image: image4,
       content: {
@@ -70,7 +70,7 @@ const Products = () => {
     },
     {
       loc: "https://www.google.com/maps/dir//37.9794083,23.7415545/@37.9794213,23.741503,20z/data=!4m2!4m1!3e3",
-      title: "Athina, Kolonaki",
+      title: "Αθήνα, Κολωνάκι",
       date: "15 August 2020",
       image: image5,
       content: {
@@ -82,7 +82,7 @@ const Products = () => {
     },
     {
       loc: "https://www.google.com/maps/@38.899626,22.4336409,20.04z",
-      title: "Thessaloniki, Port",
+      title: "Θεσσαλονίκη, Λιμάνι",
       date: "20 January 2013",
       image: image6,
       content: {
@@ -107,7 +107,7 @@ const Products = () => {
       <h1>Products</h1>
       <Grid container>
         {data.map((product) => (
-          <Grid style={{ marginTop: "2%" }} item container xs={12} md={6} lg={4} justify='center'>
+          <Grid style={{ marginBottom: "2%" }} item container xs={12} md={6} lg={4} justify='center'>
             <Product loc={product.loc} title={product.title} date={product.date} image={product.image} content={product.content} />
           </Grid>
         ))}

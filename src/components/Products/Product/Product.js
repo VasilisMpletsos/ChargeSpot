@@ -50,16 +50,16 @@ const Product = (props) => {
 
       <CardContent>
         <Grid container>
-          <Grid item xs={6} className={classes.Table} container justify='center'>
+          <Grid item xs={6} className={classes.Table} container justify='center' alignItems='center'>
             {props.content.typeC} x Type C Ports
           </Grid>
-          <Grid item xs={6} className={classes.Table} container justify='center'>
+          <Grid item xs={6} className={classes.Table} container justify='center' alignItems='center'>
             {props.content.typeA} x Type A Ports
           </Grid>
-          <Grid item xs={6} className={classes.Table} container justify='center'>
+          <Grid item xs={6} className={classes.Table} container justify='center' alignItems='center'>
             {props.content.wheel} x Wheel Chair Ports
           </Grid>
-          <Grid item xs={6} className={classes.Table} container justify='center'>
+          <Grid item xs={6} className={classes.Table} container justify='center' alignItems='center'>
             {props.content.typeB} x Type B Ports
           </Grid>
         </Grid>
