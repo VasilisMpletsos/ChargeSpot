@@ -1,15 +1,43 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import classes from "./Product.module.css";
-import { Grid } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import PlaceIcon from "@material-ui/icons/Place";
+
+const openLoc = (location) => {
+  window.open(location, "_blank");
+};
+
+const StyledCard = withStyles({
+  root: {
+    width: "90%",
+    height: "600px",
+    boxShadow: "5px 7px 15px grey",
+  },
+})(Card);
 
 const Product = (props) => {
   return (
-    <Card className={classes.Product}>
-      <CardHeader title={props.title} subheader={props.date} />
+    <StyledCard key={props.title}>
+      <CardHeader
+        action={
+          <IconButton
+            onClick={() => {
+              console.log(props.loc);
+              openLoc(props.loc);
+            }}
+          >
+            <PlaceIcon />
+          </IconButton>
+        }
+        title={props.title}
+        subheader={props.date}
+      />
       <div className={classes.Image}>
         <img src={props.image}></img>
       </div>
@@ -30,7 +58,7 @@ const Product = (props) => {
           </Grid>
         </Grid>
       </CardContent>
-    </Card>
+    </StyledCard>
   );
 };
 
