@@ -10,23 +10,81 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import axios from "../../AxiosBase";
 import Product from "./Product/Product";
-import sea from "../../assets/images/image1.jpg";
+import image1 from "../../assets/images/image1.jpg";
 import image2 from "../../assets/images/image2.jpg";
+import image3 from "../../assets/images/image3.jpg";
+import image4 from "../../assets/images/image4.jpg";
+import image5 from "../../assets/images/image5.jpg";
+import image6 from "../../assets/images/image6.jpg";
 import classes from "./Products.module.css";
 
 const Products = () => {
   const data = [
     {
       title: "Lamia",
-      subheader: "17 Semptember 2020",
+      date: "17 Semptember 2020",
       image: image2,
-      content: "Is this gonna really work i don't know!",
+      content: {
+        typeA: 5,
+        typeB: 2,
+        typeC: 9,
+        wheel: 3,
+      },
     },
     {
-      title: "Thessaloniki",
-      subheader: "20 January 2013",
-      image: sea,
-      content: "Maybe yes",
+      title: "Thessaloniki, Port",
+      date: "20 January 2013",
+      image: image1,
+      content: {
+        typeA: 5,
+        typeB: 2,
+        typeC: 9,
+        wheel: 3,
+      },
+    },
+    {
+      title: "Thessaloniki, Toumpa",
+      date: "22 August 2015",
+      image: image3,
+      content: {
+        typeA: 0,
+        typeB: 1,
+        typeC: 0,
+        wheel: 2,
+      },
+    },
+    {
+      title: "Athina, Kalithea",
+      date: "8 August 2020",
+      image: image4,
+      content: {
+        typeA: 1,
+        typeB: 1,
+        typeC: 4,
+        wheel: 0,
+      },
+    },
+    {
+      title: "Athina, Kolonaki",
+      date: "15 August 2020",
+      image: image5,
+      content: {
+        typeA: 2,
+        typeB: 2,
+        typeC: 3,
+        wheel: 4,
+      },
+    },
+    {
+      title: "Thessaloniki, Port",
+      date: "20 January 2013",
+      image: image6,
+      content: {
+        typeA: 8,
+        typeB: 7,
+        typeC: 8,
+        wheel: 0,
+      },
     },
   ];
   // const [rows, setRows] = useState([]);
@@ -43,13 +101,8 @@ const Products = () => {
       <h1>Products</h1>
       <Grid container>
         {data.map((product) => (
-          <Grid item container xs={12} md={4} justify='center'>
-            <Product
-              title={product.title}
-              subheader={product.subheader}
-              image={product.image}
-              content={product.content}
-            />
+          <Grid style={{ marginTop: "2%" }} item container xs={12} md={4} justify='center'>
+            <Product title={product.title} date={product.date} image={product.image} content={product.content} />
           </Grid>
         ))}
       </Grid>
