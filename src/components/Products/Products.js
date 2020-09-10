@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -8,71 +9,50 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import axios from "../../AxiosBase";
-
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
-  },
-});
+import Product from "./Product/Product";
+import sea from "../../assets/images/image1.jpg";
+import image2 from "../../assets/images/image2.jpg";
+import classes from "./Products.module.css";
 
 const Products = () => {
-  const [rows, setRows] = useState([]);
+  const data = [
+    {
+      title: "Lamia",
+      subheader: "17 Semptember 2020",
+      image: image2,
+      content: "Is this gonna really work i don't know!",
+    },
+    {
+      title: "Thessaloniki",
+      subheader: "20 January 2013",
+      image: sea,
+      content: "Maybe yes",
+    },
+  ];
+  // const [rows, setRows] = useState([]);
 
-  useEffect(() => {
-    console.log(rows);
-    axios.get("/products").then((response) => {
-      setRows(response.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   console.log(rows);
+  //   axios.get("/products").then((response) => {
+  //     setRows(response.data);
+  //   });
+  // }, []);
 
-  const classes = useStyles();
   return (
     <div>
       <h1>Products</h1>
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label='customized table'>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Place</StyledTableCell>
-              <StyledTableCell align='right'>Watt (W)</StyledTableCell>
-              <StyledTableCell align='right'>Plug Type</StyledTableCell>
-              <StyledTableCell align='right'>Count</StyledTableCell>
-              <StyledTableCell align='right'>Fast Charge</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.place}>
-                <StyledTableCell component='th' scope='row'>
-                  {row.place}
-                </StyledTableCell>
-                <StyledTableCell align='right'>{row.watt}</StyledTableCell>
-                <StyledTableCell align='right'>{row.type}</StyledTableCell>
-                <StyledTableCell align='right'>{row.count}</StyledTableCell>
-                <StyledTableCell align='right'>{row.fast}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Grid container>
+        {data.map((product) => (
+          <Grid item container xs={12} md={4} justify='center'>
+            <Product
+              title={product.title}
+              subheader={product.subheader}
+              image={product.image}
+              content={product.content}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 };
