@@ -21,6 +21,12 @@ const StyledCard = withStyles({
   },
 })(Card);
 
+const StyledPlaceIcon = withStyles({
+  root: {
+    fontSize: 35,
+  },
+})(PlaceIcon);
+
 const Product = (props) => {
   return (
     <StyledCard key={props.title}>
@@ -32,7 +38,7 @@ const Product = (props) => {
               openLoc(props.loc);
             }}
           >
-            <PlaceIcon />
+            <StyledPlaceIcon />
           </IconButton>
         }
         title={props.title}
