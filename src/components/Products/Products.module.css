@@ -1,2 +1,7 @@
-.Products {
+.product:hover {
+  transform: scale(1.05);
+}
+
+.product {
+  transition: 0.5s;
 }

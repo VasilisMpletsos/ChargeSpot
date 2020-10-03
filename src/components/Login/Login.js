@@ -78,14 +78,7 @@ const Login = () => {
       <Box className={classes.MainBox} boxShadow={7}>
         <h1 className={classes.Title}>Login</h1>
         <form onSubmit={sendHandler} className={classes.Login}>
-          <Grid
-            className={classes.Login}
-            container
-            alignItems='center'
-            justify='center'
-            direction='row'
-            spacing={4}
-          >
+          <Grid className={classes.Login} container alignItems='center' justify='center' direction='row' spacing={4}>
             <Grid item container justify='center' xs={12}>
               <TextField
                 className={classes.Input}
@@ -113,9 +106,7 @@ const Login = () => {
             <Button
               className={classes.Sendbutton}
               type='submit'
-              disabled={
-                state.username.length === 0 || state.password.length === 0
-              }
+              disabled={state.username.length === 0 || state.password.length === 0}
               variant='contained'
               color='primary'
               startIcon={<SendIcon />}
@@ -124,12 +115,7 @@ const Login = () => {
             </Button>
           </Box>
         </form>
-        <Snackbar
-          open={showInfo.show}
-          autoHideDuration={10000}
-          onClose={closeHandler}
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        >
+        <Snackbar open={showInfo.show} autoHideDuration={10000} onClose={closeHandler} anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
           <Alert severity={showInfo.type} variant='filled'>
             {showInfo.message}
           </Alert>

@@ -21,7 +21,7 @@ import classes from "./Products.module.css";
 const Products = () => {
   const data = [
     {
-      loc: "https://www.google.com/maps/@40.606982,22.9515786,17z",
+      loc: "https://www.google.com/maps/@38.899626,22.4336409,20.04z",
       title: "Λαμία, Πλατεία Πάρκου",
       date: "17 Semptember 2020",
       image: image2,
@@ -33,7 +33,7 @@ const Products = () => {
       },
     },
     {
-      loc: "https://www.google.com/maps/@38.899626,22.4336409,20.04z",
+      loc: "https://www.google.com/maps/@40.606982,22.9515786,17z",
       title: "Θεσσαλονίκη, Λιμάνι",
       date: "20 January 2013",
       image: image1,
@@ -83,7 +83,7 @@ const Products = () => {
     {
       loc: "https://www.google.com/maps/@38.899626,22.4336409,20.04z",
       title: "Θεσσαλονίκη, Λιμάνι",
-      date: "20 January 2013",
+      date: "20 January 2018",
       image: image6,
       content: {
         typeA: 8,
@@ -107,7 +107,7 @@ const Products = () => {
       <h1>Products</h1>
       <Grid container>
         {data.map((product) => (
-          <Grid style={{ marginBottom: "2%" }} item container xs={12} md={6} lg={4} justify='center'>
+          <Grid className={classes.product} key={product.date} style={{ marginBottom: "2%" }} item container xs={12} md={6} lg={4} justify='center'>
             <Product loc={product.loc} title={product.title} date={product.date} image={product.image} content={product.content} />
           </Grid>
         ))}
