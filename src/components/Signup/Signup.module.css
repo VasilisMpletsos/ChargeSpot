@@ -72,5 +72,5 @@
 .button:enabled {
   animation-name: click;
   animation-duration: 0.7s;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in;
 }
