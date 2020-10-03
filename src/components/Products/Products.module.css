@@ -1,7 +1,13 @@
-.product:hover {
+.focus:hover {
   transform: scale(1.05);
 }
 
-.product {
+.focus {
   transition: 0.5s;
+}
+
+@media screen and (max-width: 500px) {
+  .focus:hover {
+    transform: none;
+  }
 }

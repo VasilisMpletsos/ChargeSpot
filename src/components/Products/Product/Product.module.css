@@ -12,3 +12,13 @@
 .Table {
   height: 30px;
 }
+
+.map:hover {
+  color: #0556ac;
+}
+
+@media screen and (max-width: 400px) {
+  .Image {
+    height: 60%;
+  }
+}

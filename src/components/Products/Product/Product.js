@@ -38,7 +38,7 @@ const Product = (props) => {
               openLoc(props.loc);
             }}
           >
-            <StyledPlaceIcon />
+            <StyledPlaceIcon className={classes.map} />
           </IconButton>
         }
         title={props.title}
