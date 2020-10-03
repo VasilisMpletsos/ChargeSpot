@@ -1,42 +1,50 @@
-
-.Navbar{
-    width: 100%;
+.Navbar {
+  width: 100%;
 }
 
-.Logsign{
-    position: absolute;
-    right: 0;
+.Logsign {
+  position: absolute;
+  right: 0;
 }
 
-.Dropdown{
-    margin-top: 40px;
+.Dropdown {
+  margin-top: 40px;
 }
 
-.Dropdown a{
-    text-decoration: none;
+.Dropdown a {
+  text-decoration: none;
 }
 
-.MenuItem{
-    background-color: salmon;
+.MenuItem {
+  background-color: salmon;
 }
 
-.NavBar a{
-    height: 100%;
-    text-decoration: none;
-    color: white;
-    font-family: serif;
-    font-size: large;
+.NavBar a {
+  height: 100%;
+  text-decoration: none;
+  color: white;
+  font-family: serif;
+  font-size: large;
 }
 
 .NavBar a:active,
-.NavBar a.active{
-    text-decoration: none;
-    color: #00ff00;
-    font-weight: bolder;
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-    border-bottom: 2px solid #0f0;
-    border-top: 2px solid #0f0;
+.NavBar a.active {
+  text-decoration: none;
+  color: #00ff00;
+  font-weight: bolder;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  border-bottom: 2px solid #0f0;
+  border-top: 2px solid #0f0;
 }
 
+.showNav {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.navName {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
