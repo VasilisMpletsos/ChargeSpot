@@ -33,12 +33,13 @@ const Product = (props) => {
       <CardHeader
         action={
           <IconButton
+            className={classes.map}
             onClick={() => {
               console.log(props.loc);
               openLoc(props.loc);
             }}
           >
-            <StyledPlaceIcon className={classes.map} />
+            <StyledPlaceIcon />
           </IconButton>
         }
         title={props.title}
