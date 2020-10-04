@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import Layout from "./containers/Layout/Layout";
 //import Theme from './Theme';
 import { MuiThemeProvider } from "@material-ui/core/styles";
@@ -6,7 +6,6 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { lime, blue } from "@material-ui/core/colors";
 import { useSelector, useDispatch } from "react-redux";
 import * as actionTypes from "./store/actions";
-import { TabRounded } from "@material-ui/icons";
 
 const App = () => {
   const darkState = useSelector((state) => state.prefersDark);

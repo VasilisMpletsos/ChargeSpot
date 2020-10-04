@@ -5,7 +5,6 @@ import CardContent from "@material-ui/core/CardContent";
 import classes from "./Product.module.css";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import PlaceIcon from "@material-ui/icons/Place";
 
@@ -46,7 +45,7 @@ const Product = (props) => {
         subheader={props.date}
       />
       <div className={classes.Image}>
-        <img src={props.image}></img>
+        <img alt='' src={props.image}></img>
       </div>
 
       <CardContent>

@@ -11,12 +11,12 @@ import classes from "./NavBar.module.css";
 import SettingsIcon from "@material-ui/icons/Settings";
 import Settings from "../SettingsDrawer/SettingsDrawer";
 import { Link, NavLink } from "react-router-dom";
-import * as actionTypes from "../../store/actions";
 import { useSelector } from "react-redux";
 
 const NavBar = (props) => {
   //Redux Store
   const auth = useSelector((state) => state.auth);
+  const userName = useSelector((state) => state.userName);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -38,7 +38,7 @@ const NavBar = (props) => {
 
   let show;
   if (auth) {
-    show = <div className={[classes.showNav, classes.navName].join(" ")}>Vasilis Mpletsos</div>;
+    show = <div className={[classes.showNav, classes.navName].join(" ")}>{userName.toUpperCase()}</div>;
   } else {
     show = (
       <div className={classes.showNav}>

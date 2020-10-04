@@ -2,8 +2,8 @@ import * as actionsType from "./actions";
 
 const initialState = {
   auth: false,
-  userName: "default",
-  prefersDark: true,
+  userName: "",
+  prefersDark: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,8 +28,9 @@ const reducer = (state = initialState, action) => {
         ...state,
         prefersDark: !state.prefersDark,
       };
+    default:
+      return state;
   }
-  return state;
 };
 
 export default reducer;
