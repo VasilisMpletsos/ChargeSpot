@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Layout from "./containers/Layout/Layout";
 //import Theme from './Theme';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { lime, blue } from "@material-ui/core/colors";
+import { useSelector, useDispatch } from "react-redux";
+import * as actionTypes from "./store/actions";
+import { TabRounded } from "@material-ui/icons";
 
 const App = () => {
-  const [darkState, setDarkState] = useState(false);
+  const darkState = useSelector((state) => state.prefersDark);
+  const dispatch = useDispatch();
+  const setDarkMode = useCallback(() => dispatch({ type: actionTypes.darkMode }), [dispatch]);
+
   const palletType = darkState ? "dark" : "light";
 
   const toggleMode = () => {
-    setDarkState(!darkState);
+    setDarkMode();
   };
 
   const theme = createMuiTheme({
