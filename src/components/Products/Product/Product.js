@@ -15,7 +15,7 @@ const openLoc = (location) => {
 const StyledCard = withStyles({
   root: {
     width: "90%",
-    height: "600px",
+    height: "700px",
     boxShadow: "5px 7px 15px grey",
   },
 })(Card);
@@ -41,6 +41,7 @@ const Product = (props) => {
             <StyledPlaceIcon />
           </IconButton>
         }
+        className={classes.header}
         title={props.title}
         subheader={props.date}
       />
@@ -48,8 +49,8 @@ const Product = (props) => {
         <img alt='' src={props.image}></img>
       </div>
 
-      <CardContent>
-        <Grid container>
+      <CardContent className={classes.Ports}>
+        <Grid container className={classes.Grid}>
           <Grid item xs={6} className={classes.Table} container justify='center' alignItems='center'>
             {props.content.typeC} x Type C Ports
           </Grid>

@@ -10,15 +10,25 @@
 }
 
 .Table {
-  height: 30px;
+  height: 50%;
+}
+
+.Ports {
+  display: inline;
+  position: relative;
+  top: -10px;
+  width: 100%;
+}
+
+.Grid {
+  height: 13%;
 }
 
 .map:hover {
   color: #0556ac;
 }
 
-@media screen and (max-width: 400px) {
-  .Image {
-    height: 60%;
-  }
+.header {
+  height: 10%;
+  overflow: auto;
 }
