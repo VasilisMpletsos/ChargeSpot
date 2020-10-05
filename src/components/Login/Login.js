@@ -9,6 +9,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import validator from "validator";
 import Paper from "@material-ui/core/Paper";
+import axios from "../../AxiosBase";
 
 const Login = () => {
   const [state, changeState] = useState({
@@ -40,9 +41,17 @@ const Login = () => {
     if (error) {
       showMessage(message, "error");
     } else {
-      message = "Login Sent!";
-      showMessage(message, "success");
-      console.log(state);
+      axios
+        .post("/login", state)
+        .then((response) => {
+          message = "Login Sent!";
+          showMessage(message, "success");
+          document.getElementById("loginForm").reset();
+        })
+        .catch((error) => {
+          message = "Server Unavaible";
+          showMessage(message, "error");
+        });
     }
   };
 
@@ -77,7 +86,7 @@ const Login = () => {
     <Paper>
       <Box className={classes.MainBox} boxShadow={7}>
         <h1 className={classes.Title}>Login</h1>
-        <form onSubmit={sendHandler} className={classes.Login}>
+        <form id='loginForm' onSubmit={sendHandler} className={classes.Login}>
           <Grid className={classes.Login} container alignItems='center' justify='center' direction='row' spacing={4}>
             <Grid item container justify='center' xs={12}>
               <TextField

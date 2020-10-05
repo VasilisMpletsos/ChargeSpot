@@ -33,18 +33,17 @@ const Signup = () => {
     errorGender: false,
   });
 
+  // State of data to be sent
   const [state, changeState] = useState({
     username: "",
     email: "",
     password: "",
     password2: "",
     birth: "",
-    checkedTerms: false,
     checkedNotifications: false,
   });
 
   const handleCheck = (event) => {
-    console.log(event.target.name, event.target.checked);
     changeState({ ...state, [event.target.name]: event.target.checked });
   };
 
@@ -52,6 +51,17 @@ const Signup = () => {
     const initialState = { ...state };
     initialState[event.target.name] = event.target.value;
     changeState(initialState);
+  };
+
+  // State for check button
+  // I made a different hooks because i don't want to send it with the other data
+  // as everyone have to accept in order to register. So it is overhead.
+  const [check, setCheck] = useState({
+    checkedTerms: false,
+  });
+
+  const handleTerms = (event) => {
+    setCheck({ ...check, checkedTerms: event.target.checked });
   };
 
   const showMessage = (message, typeError) => {
@@ -73,7 +83,6 @@ const Signup = () => {
   const [gender, setGender] = React.useState("");
 
   const handleGender = (event) => {
-    console.log(gender);
     setGender(event.target.value);
   };
 
@@ -111,11 +120,16 @@ const Signup = () => {
     if (error) {
       showMessage(message, "error");
     } else {
+      // I do this in order to send all data within state and no the gender apart.
+      let data = state;
+      delete data.password2;
+      data.gender = gender;
       axios
-        .post("/add", state)
+        .post("/signup", data)
         .then((response) => {
           message = "Request for signup sent!";
           showMessage(message, "success");
+          document.getElementById("signForm").reset();
         })
         .catch((error) => {
           message = "Server Unavaible";
@@ -128,7 +142,7 @@ const Signup = () => {
     <Paper>
       <Box className={classes.MainBox} boxShadow={7}>
         <h1 className={classes.Title}>SignUp</h1>
-        <form onSubmit={sendHandler}>
+        <form id='signForm' onSubmit={sendHandler}>
           <Grid className={classes.Signup} container alignItems='center' direction='row'>
             <Grid className={classes.SignupItem} item xs={12} md={6}>
               <TextField
@@ -206,7 +220,7 @@ const Signup = () => {
           </Grid>
           <Grid style={{ paddingBottom: "2%" }} container direction='column' alignItems='center'>
             <Grid>
-              <Switch name='checkedTerms' checked={state.checkedA} onChange={handleCheck} style={{ display: "inline" }} color='primary' />
+              <Switch name='checkedTerms' checked={state.checkedA} onChange={handleTerms} style={{ display: "inline" }} color='primary' />
               <Typography style={{ display: "inline" }}>Agree in terms of use</Typography>
             </Grid>
             <Grid>
@@ -217,7 +231,7 @@ const Signup = () => {
           <Box className={classes.Sendbutton}>
             <Button
               type='submit'
-              disabled={!state.checkedTerms}
+              disabled={!check.checkedTerms}
               variant='contained'
               color='primary'
               className={classes.button}
