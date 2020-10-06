@@ -1,8 +1,8 @@
 import * as actionsType from "./actions";
 
 const initialState = {
-  auth: true,
-  userName: "Vasilis Mpletsos",
+  auth: false,
+  userName: "Vmpletsos",
   prefersDark: false,
 };
 

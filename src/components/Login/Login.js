@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -10,8 +11,18 @@ import Alert from "@material-ui/lab/Alert";
 import validator from "validator";
 import Paper from "@material-ui/core/Paper";
 import axios from "../../AxiosBase";
+import { useHistory } from "react-router-dom";
+import * as actionTypes from "../../store/actions";
 
 const Login = () => {
+  // History for redirect
+  const history = useHistory();
+
+  //Redux Variable and Function
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const clientAuth = useCallback(() => dispatch({ type: actionTypes.AUTHENTICATE }), [dispatch]);
+
   const [state, changeState] = useState({
     username: "",
     password: "",
@@ -82,6 +93,11 @@ const Login = () => {
     errorPassword: false,
   });
 
+  const login = (props) => {
+    clientAuth();
+    history.push("/products");
+  };
+
   return (
     <Paper>
       <Box className={classes.MainBox} boxShadow={7}>
@@ -118,6 +134,7 @@ const Login = () => {
               disabled={state.username.length === 0 || state.password.length === 0}
               variant='contained'
               color='primary'
+              onClick={() => login()}
               startIcon={<SendIcon />}
             >
               Send
