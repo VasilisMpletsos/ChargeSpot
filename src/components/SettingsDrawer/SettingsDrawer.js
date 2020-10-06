@@ -1,33 +1,18 @@
-import React, { useState, useEffect } from "react";
-import Drawer from "@material-ui/core/Drawer";
-import Switch from "@material-ui/core/Switch";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
+import React, { useState, useEffect, useCallback } from "react";
+import { Drawer, Switch, List, ListItem, ListItemText } from "@material-ui/core";
+import { Divider, Button, ListSubheader, Box, TextField } from "@material-ui/core";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import BackspaceIcon from "@material-ui/icons/Backspace";
-import Button from "@material-ui/core/Button";
 import TimelineIcon from "@material-ui/icons/Timeline";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import BatteryCharging20Icon from "@material-ui/icons/BatteryCharging20";
 import socketIOClient from "socket.io-client";
-import { useSelector } from "react-redux";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Box from "@material-ui/core/Box";
-import TextField from "@material-ui/core/TextField";
+import { useSelector, useDispatch } from "react-redux";
+import { DialogTitle, Dialog, DialogContent, DialogContentText, DialogActions } from "@material-ui/core";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import * as actionTypes from "../../store/actions";
 import classes from "./SettingsDrawer.module.css";
 
 const StyledTextField = withStyles({
@@ -50,6 +35,9 @@ const ENDPOINT = "https://ec2-35-176-175-106.eu-west-2.compute.amazonaws.com:500
 const Settings = (props) => {
   const darkState = useSelector((state) => state.prefersDark);
   const auth = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+  const deauth = useCallback(() => dispatch({ type: actionTypes.DEAUTHENTICATE }), [dispatch]);
 
   const [state, changeState] = useState({
     creditCard: "",
@@ -118,6 +106,11 @@ const Settings = (props) => {
             Credit Card Settings
           </Button>
         </ListItem>
+        <ListItem>
+          <Button startIcon={<ExitToAppIcon />} onClick={() => deauth()}>
+            Logout
+          </Button>
+        </ListItem>
       </List>
     );
   } else {
@@ -154,13 +147,21 @@ const Settings = (props) => {
   const timeData = [
     {
       date: "10/08/2020",
-      duration: "0:45",
-      location: "Thessaloniki, Port",
+      duration: 45,
+      location: "Θεσσαλονίκη, Λιμάνι",
+      price: 2.31,
     },
     {
       date: "03/08/2020",
-      duration: "0:32",
-      location: "Athina, Kolonaki",
+      duration: 32,
+      location: "Αθήνα, Κολωνάκι",
+      price: 1.15,
+    },
+    {
+      date: "04/02/2018",
+      duration: 12,
+      location: "Θεσσαλονίκη, Τούμπα",
+      price: 0.46,
     },
   ];
 
@@ -177,7 +178,7 @@ const Settings = (props) => {
           <DialogContentText className={classes.DialogContent} id='alert-dialog-description'>
             Here you can see your remaining money. Thanks for using our platform and helping the enviroment by charging with 100% renewable energy.
           </DialogContentText>
-          <div className={classes.Money}>25.33 $</div>
+          <div className={classes.Money}>25.33 €</div>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => toggleAccountDialog(false)} color='primary'>
@@ -191,23 +192,25 @@ const Settings = (props) => {
         <DialogTitle>Usage History</DialogTitle>
         <DialogContent>
           <DialogContentText className={classes.DialogContent} id='alert-dialog-description'>
-            Here you can see the last 10 charging times you also used our Platform.
+            Here you can see the last 5 charging times you also used our Platform.
           </DialogContentText>
           <TableContainer component={Box}>
             <Table size='small' align>
               <TableHead>
                 <TableRow className={classes.Header}>
                   <StyledTableCell>Date</StyledTableCell>
-                  <StyledTableCell>Charging</StyledTableCell>
+                  <StyledTableCell>Duration</StyledTableCell>
                   <StyledTableCell>Location</StyledTableCell>
+                  <StyledTableCell>Price</StyledTableCell>
                 </TableRow>
               </TableHead>
               {timeData.map((data) => (
                 <TableBody>
                   <TableRow className={classes.Row}>
                     <TableCell>{data.date}</TableCell>
-                    <TableCell>{data.duration}</TableCell>
+                    <TableCell>{data.duration} minutes</TableCell>
                     <TableCell>{data.location}</TableCell>
+                    <TableCell>{data.price} €</TableCell>
                   </TableRow>
                 </TableBody>
               ))}
