@@ -16,7 +16,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 const StyledTypography = withStyles({
   root: {
-    fontFamily: "Fredericka the Great",
+    fontFamily: "Cabin Sketch",
   },
 })(Typography);
 
