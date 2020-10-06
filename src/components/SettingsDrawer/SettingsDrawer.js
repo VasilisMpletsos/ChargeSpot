@@ -15,10 +15,30 @@ import BatteryCharging20Icon from "@material-ui/icons/BatteryCharging20";
 import socketIOClient from "socket.io-client";
 import { useSelector } from "react-redux";
 
-const ENDPOINT = "http://ec2-35-176-175-106.eu-west-2.compute.amazonaws.com:5000";
+const ENDPOINT = "https://ec2-35-176-175-106.eu-west-2.compute.amazonaws.com:5000";
 
 const Settings = (props) => {
   const darkState = useSelector((state) => state.prefersDark);
+  const auth = useSelector((state) => state.auth);
+
+  let show;
+  if (auth) {
+    show = (
+      <List>
+        <ListItem>
+          <Button startIcon={<TimelineIcon />}>Usage History</Button>
+        </ListItem>
+        <ListItem>
+          <Button startIcon={<AccountBalanceIcon />}>Account Balance</Button>
+        </ListItem>
+        <ListItem>
+          <Button startIcon={<CreditCardIcon />}>Change Credit Card</Button>
+        </ListItem>
+      </List>
+    );
+  } else {
+    show = <div></div>;
+  }
 
   const [connectedUsers, setConnectedUsers] = useState("-");
 
@@ -44,16 +64,7 @@ const Settings = (props) => {
           <Switch onClick={props.darkMode} checked={darkState}></Switch>
           <ListItemText primary='Dark Mode' />
         </ListItem>
-        <ListItem>
-          <Button startIcon={<TimelineIcon />}>Usage History</Button>
-        </ListItem>
-        <ListItem>
-          <Button startIcon={<AccountBalanceIcon />}>Account Balance</Button>
-        </ListItem>
-        <ListItem>
-          <Button startIcon={<CreditCardIcon />}>Change Credit Card</Button>
-        </ListItem>
-        <Divider />
+        {show}
         <ListItem>
           <BatteryCharging20Icon />
           <ListItemText>{connectedUsers} people charging</ListItemText>
