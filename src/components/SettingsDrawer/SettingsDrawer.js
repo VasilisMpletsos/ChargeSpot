@@ -15,7 +15,7 @@ import BatteryCharging20Icon from "@material-ui/icons/BatteryCharging20";
 import socketIOClient from "socket.io-client";
 import { useSelector } from "react-redux";
 
-const ENDPOINT = "http://35.176.175.106:5000/";
+const ENDPOINT = "https://35.176.175.106:5000/";
 
 const Settings = (props) => {
   const darkState = useSelector((state) => state.prefersDark);
