@@ -12,6 +12,13 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import Settings from "../SettingsDrawer/SettingsDrawer";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { withStyles } from "@material-ui/core/styles";
+
+const StyledTypography = withStyles({
+  root: {
+    fontFamily: "Fredericka the Great",
+  },
+})(Typography);
 
 const NavBar = (props) => {
   //Redux Store
@@ -88,7 +95,7 @@ const NavBar = (props) => {
           </MenuItem>
         </Menu>
         <Hidden xsDown={true}>
-          <Typography variant='h6'>Charge Spot</Typography>
+          <StyledTypography variant='h4'>Charge Spot</StyledTypography>
         </Hidden>
         <div className={classes.Logsign}>
           {show}

@@ -1,3 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merienda&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cabin+Sketch&display=swap");
+
+/* 
+The avaiable styles are:
+-> Dancing Script
+-> Monoton
+-> Merienda
+-> Fredericka the Great
+-> Cabin Sketch
+We must check them out in order to decide the one for our title!
+*/
+
 .Navbar {
   width: 100%;
 }
