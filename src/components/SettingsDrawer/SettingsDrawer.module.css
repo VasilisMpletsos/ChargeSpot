@@ -1,0 +1,14 @@
+.Money {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  width: 80%;
+  height: 60px;
+  box-shadow: 5px 3px 10px grey;
+}
+
+.DialogContent {
+  text-align: justify;
+}

@@ -1,7 +1,7 @@
 import * as actionsType from "./actions";
 
 const initialState = {
-  auth: false,
+  auth: true,
   userName: "",
   prefersDark: false,
 };
