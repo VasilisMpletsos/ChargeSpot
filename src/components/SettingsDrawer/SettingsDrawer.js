@@ -17,7 +17,7 @@ import classes from "./SettingsDrawer.module.css";
 
 const StyledTextField = withStyles({
   root: {
-    marginBottom: "10px",
+    marginBottom: "20px",
     width: "100%",
   },
 })(TextField);
@@ -40,14 +40,13 @@ const Settings = (props) => {
   const deauth = useCallback(() => dispatch({ type: actionTypes.DEAUTHENTICATE }), [dispatch]);
 
   const [state, changeState] = useState({
-    creditCard: "",
-    cardHolder: "",
-    expirationDate: "",
-    cvv: "",
+    cardnumber: "",
+    ccname: "",
+    expdate: "",
+    cardcvc: "",
   });
 
   const inputHandler = (event) => {
-    console.log(state);
     const initialState = { ...state };
     initialState[event.target.name] = event.target.value;
     changeState(initialState);
@@ -71,6 +70,11 @@ const Settings = (props) => {
 
   const toggleCreditDialog = (state) => {
     setCreditState(state);
+  };
+
+  const logout = () => {
+    props.close();
+    deauth();
   };
 
   let show;
@@ -107,7 +111,7 @@ const Settings = (props) => {
           </Button>
         </ListItem>
         <ListItem>
-          <Button startIcon={<ExitToAppIcon />} onClick={() => deauth()}>
+          <Button startIcon={<ExitToAppIcon />} onClick={() => logout()}>
             Logout
           </Button>
         </ListItem>
@@ -233,17 +237,8 @@ const Settings = (props) => {
           </DialogContentText>
           <form id='creditCardInfo'>
             <StyledTextField
-              value={state.creditCard}
-              name='creditCard'
-              type='text'
-              label='Credit Card'
-              variant='outlined'
-              required={true}
-              onChange={(event) => inputHandler(event)}
-            />
-            <StyledTextField
-              value={state.cardHolder.toUpperCase()}
-              name='cardHolder'
+              value={state.cardnumber}
+              name='cardnumber'
               type='text'
               label='Card_Holder'
               required={true}
@@ -251,8 +246,18 @@ const Settings = (props) => {
               onChange={(event) => inputHandler(event)}
             />
             <StyledTextField
-              value={state.expirationDate}
-              name='expirationDate'
+              value={state.ccname.toUpperCase()}
+              name='ccname'
+              type='text'
+              label='Card_Holder'
+              required={true}
+              variant='outlined'
+              onChange={(event) => inputHandler(event)}
+            />
+            <StyledTextField
+              value={state.expdate}
+              name='expdate'
+              autoComplete='cc-exp'
               type='text'
               label='Expires'
               required={true}
@@ -260,10 +265,11 @@ const Settings = (props) => {
               onChange={(event) => inputHandler(event)}
             />
             <StyledTextField
-              value={state.cvv}
+              value={state.cardcvc}
               required={true}
-              name='cvv'
-              label='CVV'
+              name='cardcvc'
+              autoComplete='cc-csc'
+              label='CVC'
               type='text'
               variant='outlined'
               onChange={(event) => inputHandler(event)}
