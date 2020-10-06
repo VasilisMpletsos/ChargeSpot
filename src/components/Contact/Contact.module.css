@@ -1,7 +1,6 @@
-.Contact{
-    text-align: center;
-    padding: 20px;
-    font-family: serif;
-    font-size: 25px;
-    font-weight: bolder;
+.Contact {
+  text-align: center;
+  padding: 20px;
+  font-family: serif;
+  font-size: 2vmax;
 }
