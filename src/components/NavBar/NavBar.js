@@ -10,9 +10,10 @@ import Hidden from "@material-ui/core/Hidden";
 import classes from "./NavBar.module.css";
 import SettingsIcon from "@material-ui/icons/Settings";
 import Settings from "../SettingsDrawer/SettingsDrawer";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 
 const StyledTypography = withStyles({
   root: {
@@ -21,6 +22,9 @@ const StyledTypography = withStyles({
 })(Typography);
 
 const NavBar = (props) => {
+  // History for redirect
+  const history = useHistory();
+
   //Redux Store
   const auth = useSelector((state) => state.auth);
   const userName = useSelector((state) => state.userName);
@@ -71,6 +75,10 @@ const NavBar = (props) => {
     setAnchorEl(null);
   };
 
+  const redirect = (event) => {
+    history.push(event.target.id);
+  };
+
   return (
     <AppBar
       position='static'
@@ -84,18 +92,24 @@ const NavBar = (props) => {
           <MenuIcon fontSize='large' color='secondary' />
         </Button>
         <Menu className={classes.Dropdown} anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
-          <MenuItem onClick={handleClose} style={{ backgroundColor: "white" }}>
-            <Link to='/'>Home</Link>
+          <MenuItem onClick={handleClose}>
+            <StyledTypography variant='h6' id='/' onClick={(event) => redirect(event)}>
+              Home
+            </StyledTypography>
           </MenuItem>
           {auth ? (
-            <MenuItem onClick={handleClose} style={{ backgroundColor: "white" }}>
-              <Link to='/products'>Products</Link>
+            <MenuItem onClick={handleClose}>
+              <StyledTypography variant='h6' id='/products' onClick={(event) => redirect(event)}>
+                Products
+              </StyledTypography>
             </MenuItem>
           ) : (
             ""
           )}
-          <MenuItem onClick={handleClose} style={{ backgroundColor: "white" }}>
-            <Link to='/contact'>Contact</Link>
+          <MenuItem onClick={handleClose}>
+            <StyledTypography variant='h6' id='/contact' onClick={(event) => redirect(event)}>
+              Contact
+            </StyledTypography>
           </MenuItem>
         </Menu>
         <Hidden xsDown={true}>
