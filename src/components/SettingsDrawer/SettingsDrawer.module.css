@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+
 .Money {
   display: flex;
   margin: auto;
@@ -10,11 +12,11 @@
 }
 
 .Header {
-  background-color: #1dad2c80;
+  background-color: #5fce93;
 }
 
 .Row {
-  background-color: #1c73caa8;
+  background-color: #637ef3;
 }
 
 .DialogContent {

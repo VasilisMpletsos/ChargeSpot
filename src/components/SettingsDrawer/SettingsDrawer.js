@@ -37,6 +37,14 @@ const StyledTextField = withStyles({
   },
 })(TextField);
 
+const StyledTableCell = withStyles({
+  root: {
+    fontWeight: "bold",
+    fontFamily: "Dancing Script",
+    fontSize: "25px",
+  },
+})(TableCell);
+
 const ENDPOINT = "https://ec2-35-176-175-106.eu-west-2.compute.amazonaws.com:5000";
 
 const Settings = (props) => {
@@ -189,9 +197,9 @@ const Settings = (props) => {
             <Table size='small' align>
               <TableHead>
                 <TableRow className={classes.Header}>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Charging</TableCell>
-                  <TableCell>Location</TableCell>
+                  <StyledTableCell>Date</StyledTableCell>
+                  <StyledTableCell>Charging</StyledTableCell>
+                  <StyledTableCell>Location</StyledTableCell>
                 </TableRow>
               </TableHead>
               {timeData.map((data) => (
