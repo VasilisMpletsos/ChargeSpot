@@ -2,7 +2,7 @@ import * as actionsType from "./actions";
 
 const initialState = {
   auth: true,
-  userName: "",
+  userName: "Vasilis Mpletsos",
   prefersDark: false,
 };
 

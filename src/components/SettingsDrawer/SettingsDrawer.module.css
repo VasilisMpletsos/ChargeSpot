@@ -6,9 +6,22 @@
   font-size: 30px;
   width: 80%;
   height: 60px;
-  box-shadow: 5px 3px 10px grey;
+  box-shadow: 1px 1px 10px grey;
+}
+
+.Header {
+  background-color: #1dad2c80;
+}
+
+.Row {
+  background-color: #1c73caa8;
 }
 
 .DialogContent {
   text-align: justify;
+}
+
+.Form {
+  width: 100%;
+  margin-top: 20px;
 }
