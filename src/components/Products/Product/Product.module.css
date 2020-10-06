@@ -1,3 +1,8 @@
+.Card {
+  height: 700px;
+  width: 90%;
+}
+
 .Image {
   height: 70%;
   width: 100%;
@@ -31,4 +36,28 @@
 .header {
   height: 10%;
   overflow: auto;
+}
+
+@media screen and (max-width: 400px) {
+  .Table {
+    font-size: 4.5vw;
+  }
+
+  .Image {
+    height: 0%;
+  }
+
+  .Image img {
+    height: 0%;
+  }
+
+  .Card {
+    height: 200px;
+    width: 100%;
+  }
+
+  .header,
+  .Grid {
+    height: 35%;
+  }
 }

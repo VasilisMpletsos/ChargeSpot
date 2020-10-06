@@ -14,8 +14,6 @@ const openLoc = (location) => {
 
 const StyledCard = withStyles({
   root: {
-    width: "90%",
-    height: "700px",
     boxShadow: "5px 7px 15px grey",
   },
 })(Card);
@@ -28,7 +26,7 @@ const StyledPlaceIcon = withStyles({
 
 const Product = (props) => {
   return (
-    <StyledCard key={props.title}>
+    <StyledCard key={props.title} className={classes.Card}>
       <CardHeader
         action={
           <IconButton
