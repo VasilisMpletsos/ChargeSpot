@@ -197,7 +197,7 @@ const Settings = (props) => {
           <TableContainer component={Box}>
             <Table size='small' align>
               <TableHead>
-                <TableRow className={classes.Header}>
+                <TableRow>
                   <StyledTableCell>Date</StyledTableCell>
                   <StyledTableCell>Duration</StyledTableCell>
                   <StyledTableCell>Location</StyledTableCell>
@@ -206,7 +206,7 @@ const Settings = (props) => {
               </TableHead>
               {timeData.map((data) => (
                 <TableBody>
-                  <TableRow className={classes.Row}>
+                  <TableRow>
                     <TableCell>{data.date}</TableCell>
                     <TableCell>{data.duration} minutes</TableCell>
                     <TableCell>{data.location}</TableCell>

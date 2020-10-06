@@ -3,10 +3,16 @@ import Grid from "@material-ui/core/Grid";
 import Product from "./Product/Product";
 import classes from "./Products.module.css";
 import { data } from "./Points";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const Products = () => {
+  //Redux Store
+  const auth = useSelector((state) => state.auth);
+
   return (
     <div>
+      {auth ? "" : <Redirect to='/login' />}
       <h1>Products</h1>
       <Grid container>
         {data.map((product) => (

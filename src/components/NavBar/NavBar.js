@@ -87,9 +87,13 @@ const NavBar = (props) => {
           <MenuItem onClick={handleClose} style={{ backgroundColor: "white" }}>
             <Link to='/'>Home</Link>
           </MenuItem>
-          <MenuItem onClick={handleClose} style={{ backgroundColor: "white" }}>
-            <Link to='/products'>Products</Link>
-          </MenuItem>
+          {auth ? (
+            <MenuItem onClick={handleClose} style={{ backgroundColor: "white" }}>
+              <Link to='/products'>Products</Link>
+            </MenuItem>
+          ) : (
+            ""
+          )}
           <MenuItem onClick={handleClose} style={{ backgroundColor: "white" }}>
             <Link to='/contact'>Contact</Link>
           </MenuItem>
