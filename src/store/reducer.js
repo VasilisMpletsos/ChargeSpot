@@ -6,6 +6,7 @@ const initialState = {
   prefersDark: false,
   accountBalance: 0,
   lastCharges: [],
+  products: [],
 };
 
 const reducer = (state = initialState, action) => {
