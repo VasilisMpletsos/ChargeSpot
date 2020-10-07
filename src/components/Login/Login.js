@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -19,11 +19,13 @@ const Login = () => {
   const history = useHistory();
 
   //Redux Variable and Function
+  const prefersDark = useSelector((state) => state.prefersDark);
   const dispatch = useDispatch();
   const clientAuth = useCallback(() => dispatch({ type: actionTypes.AUTHENTICATE }), [dispatch]);
   const setUserName = useCallback((name) => dispatch({ type: actionTypes.setUserName, name: name }), [dispatch]);
   const setAccountBalance = useCallback((account) => dispatch({ type: actionTypes.setAccountBalance, account: account }), [dispatch]);
   const setLastCharges = useCallback((lastCharges) => dispatch({ type: actionTypes.setLastCharges, lastCharges: lastCharges }), [dispatch]);
+  const toogleDarkState = useCallback(() => dispatch({ type: actionTypes.darkMode }), [dispatch]);
 
   const [state, changeState] = useState({
     username: "",
@@ -66,6 +68,9 @@ const Login = () => {
             setUserName(state.username);
             setAccountBalance(response.data.account);
             setLastCharges(response.data.lastCharges);
+            if (prefersDark !== response.data.prefersDark) {
+              toogleDarkState();
+            }
             history.push("/products");
           }
         })

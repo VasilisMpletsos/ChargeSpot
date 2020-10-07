@@ -12,6 +12,7 @@ import socketIOClient from "socket.io-client";
 import { DialogTitle, Dialog, DialogContent, DialogContentText, DialogActions } from "@material-ui/core";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import axios from "../../AxiosBase";
 import * as actionTypes from "../../store/actions";
 import classes from "./SettingsDrawer.module.css";
 
@@ -42,6 +43,7 @@ const Settings = (props) => {
 
   const dispatch = useDispatch();
   const deauth = useCallback(() => dispatch({ type: actionTypes.DEAUTHENTICATE }), [dispatch]);
+  const toogleDarkState = useCallback(() => dispatch({ type: actionTypes.darkMode }), [dispatch]);
 
   const [state, changeState] = useState({
     cardnumber: "",
@@ -57,7 +59,6 @@ const Settings = (props) => {
   };
 
   const [connectedUsers, setConnectedUsers] = useState("-");
-
   const [accountDialogState, setAccountState] = useState(false);
 
   const toggleAccountDialog = (state) => {
@@ -81,12 +82,40 @@ const Settings = (props) => {
     deauth();
   };
 
+  // Permission is just not to
+  const [checkStart, setCheckStart] = useState(true);
+
+  useEffect(() => {
+    if (!checkStart) {
+      axios
+        .post("/changeDarkState", { darkState: darkState })
+        .then((response) => {
+          console.log("Preference sent from UI");
+        })
+        .catch((error) => {
+          console.log("Something Gone Wrong");
+        });
+    } else {
+      setCheckStart(false);
+    }
+  }, [darkState]);
+
+  const changeDark = () => {
+    props.close();
+    toogleDarkState();
+  };
+
   let show;
   if (auth) {
     show = (
       <List>
         <ListSubheader component='div' id='nested-list-subheader'>
-          <Button onClick={props.close} startIcon={<BackspaceIcon />}></Button>
+          <Button
+            onClick={() => {
+              changeDark();
+            }}
+            startIcon={<BackspaceIcon />}
+          ></Button>
           Settings
         </ListSubheader>
         <Divider />
@@ -128,16 +157,10 @@ const Settings = (props) => {
           <Button onClick={props.close} startIcon={<BackspaceIcon />}></Button>
           Settings
         </ListSubheader>
-        <Divider />
-        <ListItem>
-          <Switch onClick={props.darkMode} checked={darkState}></Switch>
-          <ListItemText primary='Dark Mode' />
-        </ListItem>
         <ListItem>
           <BatteryCharging20Icon />
           <ListItemText>{connectedUsers} people charging</ListItemText>
         </ListItem>
-        <Divider />
       </List>
     );
   }
