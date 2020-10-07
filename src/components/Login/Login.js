@@ -45,9 +45,9 @@ const Login = () => {
       error = true;
       message = "Username must have at least 6 letters and no more than 12!";
       setErrors({ errorName: true });
-    } else if (!validator.isLength(state.password, { min: 6, max: 12 })) {
+    } else if (!validator.isLength(state.password, { min: 6, max: 25 })) {
       error = true;
-      message = "You Password must be between 6 and 12 charachters!";
+      message = "You Password must be between 6 and 25 charachters!";
       setErrors({ errorPassword: true });
     }
 

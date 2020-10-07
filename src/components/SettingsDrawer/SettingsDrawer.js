@@ -30,7 +30,9 @@ const StyledTableCell = withStyles({
   },
 })(TableCell);
 
-const ENDPOINT = "https://ec2-35-176-175-106.eu-west-2.compute.amazonaws.com:5000";
+// http://35.176.175.106:5000/
+// http://localhost:5000/
+const ENDPOINT = "http://35.176.175.106:5000/";
 
 const Settings = (props) => {
   const darkState = useSelector((state) => state.prefersDark);
