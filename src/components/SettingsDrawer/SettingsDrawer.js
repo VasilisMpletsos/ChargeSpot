@@ -101,7 +101,6 @@ const Settings = (props) => {
   }, [darkState]);
 
   const changeDark = () => {
-    props.close();
     toogleDarkState();
   };
 
@@ -112,7 +111,7 @@ const Settings = (props) => {
         <ListSubheader component='div' id='nested-list-subheader'>
           <Button
             onClick={() => {
-              changeDark();
+              props.close();
             }}
             startIcon={<BackspaceIcon />}
           ></Button>
@@ -120,7 +119,12 @@ const Settings = (props) => {
         </ListSubheader>
         <Divider />
         <ListItem>
-          <Switch onClick={props.darkMode} checked={darkState}></Switch>
+          <Switch
+            onClick={() => {
+              changeDark();
+            }}
+            checked={darkState}
+          ></Switch>
           <ListItemText primary='Dark Mode' />
         </ListItem>
         <ListItem>
