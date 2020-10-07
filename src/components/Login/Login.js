@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
@@ -19,9 +19,11 @@ const Login = () => {
   const history = useHistory();
 
   //Redux Variable and Function
-  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const clientAuth = useCallback(() => dispatch({ type: actionTypes.AUTHENTICATE }), [dispatch]);
+  const setUserName = useCallback((name) => dispatch({ type: actionTypes.setUserName, name: name }), [dispatch]);
+  const setAccountBalance = useCallback((account) => dispatch({ type: actionTypes.setAccountBalance, account: account }), [dispatch]);
+  const setLastCharges = useCallback((lastCharges) => dispatch({ type: actionTypes.setLastCharges, lastCharges: lastCharges }), [dispatch]);
 
   const [state, changeState] = useState({
     username: "",
@@ -55,9 +57,17 @@ const Login = () => {
       axios
         .post("/login", state)
         .then((response) => {
+          console.log(response.data);
           message = "Login Sent!";
           showMessage(message, "success");
           document.getElementById("loginForm").reset();
+          if (response.data.auth) {
+            clientAuth();
+            setUserName(state.username);
+            setAccountBalance(response.data.account);
+            setLastCharges(response.data.lastCharges);
+            history.push("/products");
+          }
         })
         .catch((error) => {
           message = "Server Unavaible";
@@ -92,11 +102,6 @@ const Login = () => {
     errorName: false,
     errorPassword: false,
   });
-
-  const login = (props) => {
-    clientAuth();
-    history.push("/products");
-  };
 
   return (
     <Paper>
@@ -134,7 +139,6 @@ const Login = () => {
               disabled={state.username.length === 0 || state.password.length === 0}
               variant='contained'
               color='primary'
-              onClick={() => login()}
               startIcon={<SendIcon />}
             >
               Send

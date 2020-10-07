@@ -10,7 +10,7 @@ import Hidden from "@material-ui/core/Hidden";
 import classes from "./NavBar.module.css";
 import SettingsIcon from "@material-ui/icons/Settings";
 import Settings from "../SettingsDrawer/SettingsDrawer";
-import { Link, NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
@@ -49,7 +49,7 @@ const NavBar = (props) => {
 
   let show;
   if (auth) {
-    show = <div className={[classes.showNav, classes.navName].join(" ")}>{userName.toUpperCase()}</div>;
+    show = <div className={[classes.showNav, classes.navName].join(" ")}>{userName}</div>;
   } else {
     show = (
       <div className={classes.showNav}>

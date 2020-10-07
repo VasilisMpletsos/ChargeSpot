@@ -35,6 +35,8 @@ const ENDPOINT = "https://ec2-35-176-175-106.eu-west-2.compute.amazonaws.com:500
 const Settings = (props) => {
   const darkState = useSelector((state) => state.prefersDark);
   const auth = useSelector((state) => state.auth);
+  const accountBalance = useSelector((state) => state.accountBalance);
+  const lastCharges = useSelector((state) => state.lastCharges);
 
   const dispatch = useDispatch();
   const deauth = useCallback(() => dispatch({ type: actionTypes.DEAUTHENTICATE }), [dispatch]);
@@ -148,27 +150,6 @@ const Settings = (props) => {
     });
   }, []);
 
-  const timeData = [
-    {
-      date: "10/08/2020",
-      duration: 45,
-      location: "Θεσσαλονίκη, Λιμάνι",
-      price: 2.31,
-    },
-    {
-      date: "03/08/2020",
-      duration: 32,
-      location: "Αθήνα, Κολωνάκι",
-      price: 1.15,
-    },
-    {
-      date: "04/02/2018",
-      duration: 12,
-      location: "Θεσσαλονίκη, Τούμπα",
-      price: 0.46,
-    },
-  ];
-
   return (
     <div>
       <Drawer variant='persistent' anchor='right' open={props.open}>
@@ -182,7 +163,7 @@ const Settings = (props) => {
           <DialogContentText className={classes.DialogContent} id='alert-dialog-description'>
             Here you can see your remaining money. Thanks for using our platform and helping the enviroment by charging with 100% renewable energy.
           </DialogContentText>
-          <div className={classes.Money}>25.33 €</div>
+          <div className={classes.Money}>{accountBalance} €</div>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => toggleAccountDialog(false)} color='primary'>
@@ -208,7 +189,7 @@ const Settings = (props) => {
                   <StyledTableCell>Price</StyledTableCell>
                 </TableRow>
               </TableHead>
-              {timeData.map((data) => (
+              {lastCharges.map((data) => (
                 <TableBody>
                   <TableRow>
                     <TableCell>{data.date}</TableCell>

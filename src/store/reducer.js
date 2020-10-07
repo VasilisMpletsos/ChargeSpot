@@ -2,8 +2,10 @@ import * as actionsType from "./actions";
 
 const initialState = {
   auth: false,
-  userName: "Vmpletsos",
+  userName: "",
   prefersDark: false,
+  accountBalance: 0,
+  lastCharges: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +29,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         prefersDark: !state.prefersDark,
+      };
+    case actionsType.setAccountBalance:
+      return {
+        ...state,
+        accountBalance: action.account,
+      };
+    case actionsType.setLastCharges:
+      return {
+        ...state,
+        lastCharges: action.lastCharges,
       };
     default:
       return state;
