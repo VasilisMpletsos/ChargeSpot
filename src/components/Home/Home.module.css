@@ -1,16 +1,4 @@
-.focus:hover {
-  transform: scale(1.05);
-}
-
-.focus {
-  transition: 0.5s;
-}
-
-@media screen and (max-width: 500px) {
-  .focus:hover {
-    transform: none;
-  }
-}
+@import url("https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap");
 
 @keyframes title {
   0% {
@@ -32,7 +20,21 @@
 
 .Title {
   text-align: center;
+  padding-top: 30px;
   animation-name: title;
   animation-duration: 0.7s;
   animation-timing-function: ease-in;
+}
+
+.main {
+  width: 90%;
+  margin: auto;
+}
+
+.Signature {
+  font-size: 20px;
+  font-family: "Nothing You Could Do";
+  text-align: end;
+  margin-top: 50px;
+  padding-bottom: 20px;
 }

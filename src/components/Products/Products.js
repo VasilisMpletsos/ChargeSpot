@@ -13,7 +13,7 @@ const Products = () => {
   return (
     <div>
       {auth ? "" : <Redirect to='/login' />}
-      <h1>Products</h1>
+      <h1 className={classes.Title}>Products</h1>
       <Grid container>
         {data.map((product) => (
           <Grid className={classes.focus} key={product.date} style={{ marginBottom: "2%" }} item container xs={12} md={6} lg={4} justify='center'>
