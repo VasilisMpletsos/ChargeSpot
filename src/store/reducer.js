@@ -31,6 +31,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         prefersDark: !state.prefersDark,
       };
+    case actionsType.darkModeFalse:
+      return {
+        ...state,
+        prefersDark: false,
+      };
     case actionsType.setAccountBalance:
       return {
         ...state,

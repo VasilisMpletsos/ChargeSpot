@@ -44,6 +44,7 @@ const Settings = (props) => {
   const dispatch = useDispatch();
   const deauth = useCallback(() => dispatch({ type: actionTypes.DEAUTHENTICATE }), [dispatch]);
   const toogleDarkState = useCallback(() => dispatch({ type: actionTypes.darkMode }), [dispatch]);
+  const darkModeFalse = useCallback(() => dispatch({ type: actionTypes.darkModeFalse }), [dispatch]);
 
   const [state, changeState] = useState({
     cardnumber: "",
@@ -104,6 +105,12 @@ const Settings = (props) => {
     toogleDarkState();
   };
 
+  // If user has default dark mode on its smartphone change darkstate to false
+  // because our color of darkMode is probably different from the device
+  if (darkState === (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    darkModeFalse();
+  }
+
   let show;
   if (auth) {
     show = (
@@ -118,18 +125,23 @@ const Settings = (props) => {
           Settings
         </ListSubheader>
         <Divider />
-        <ListItem>
-          <Switch
-            onClick={() => {
-              changeDark();
-            }}
-            checked={darkState}
-          ></Switch>
-          <ListItemText primary='Dark Mode' />
-        </ListItem>
+        {/* If user has default dark mode on its smartphone dont show switch*/}
+        {window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? (
+          ""
+        ) : (
+          <ListItem>
+            <Switch
+              onClick={() => {
+                changeDark();
+              }}
+              checked={darkState}
+            ></Switch>
+            <ListItemText primary='Dark Mode' />
+          </ListItem>
+        )}
         <ListItem>
           <BatteryCharging20Icon />
-          <ListItemText>{connectedUsers} people charging</ListItemText>
+          <ListItemText>{connectedUsers} seeking to charge</ListItemText>
         </ListItem>
         <Divider />
         <ListItem>
@@ -163,7 +175,7 @@ const Settings = (props) => {
         </ListSubheader>
         <ListItem>
           <BatteryCharging20Icon />
-          <ListItemText>{connectedUsers} people charging</ListItemText>
+          <ListItemText>{connectedUsers} seeking to charge</ListItemText>
         </ListItem>
       </List>
     );
