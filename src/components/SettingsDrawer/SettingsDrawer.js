@@ -105,8 +105,8 @@ const Settings = (props) => {
     toogleDarkState();
   };
 
-  // If user has default dark mode on its smartphone change darkstate to false
-  // because our color of darkMode is probably different from the device
+  // Check everytime if user has default dark mode on its smartphone and if so change darkstate to false
+  // because our color of darkMode is probably different from the device's color.
   if (darkState === (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
     darkModeFalse();
   }
@@ -125,7 +125,7 @@ const Settings = (props) => {
           Settings
         </ListSubheader>
         <Divider />
-        {/* If user has default dark mode on its smartphone dont show switch*/}
+        {/* If user has default dark mode on its smartphone dont show darkState switch*/}
         {window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? (
           ""
         ) : (
