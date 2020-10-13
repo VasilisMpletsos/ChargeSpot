@@ -33,7 +33,7 @@ const StyledTableCell = withStyles({
 
 // http://35.176.175.106:5000/
 // http://localhost:5000/
-const ENDPOINT = "http://35.176.175.106:5000/";
+const ENDPOINT = "https://35.176.175.106:5000/";
 
 const Settings = (props) => {
   const darkState = useSelector((state) => state.prefersDark);
