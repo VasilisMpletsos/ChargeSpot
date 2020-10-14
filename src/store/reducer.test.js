@@ -9,7 +9,6 @@ describe('Auth reducer',()=>{
         prefersDark: false,
         accountBalance: 0,
         lastCharges: [],
-        products: [],
       }
 
     it('Should return the initial state',()=>{
@@ -78,7 +77,7 @@ describe('Auth reducer',()=>{
         })
     })
 
-    it('Should return proper lastCharges',()=>{
+    it('Should return proper username string',()=>{
         expect(reducer(undefined, {type: actionsType.setLastCharges, lastCharges: [{typeA: 5, port: 10},{typeC: 2, port: 7}]})).toEqual({
             ...state,
             lastCharges: [{typeA: 5, port: 10},{typeC: 2, port: 7}]
