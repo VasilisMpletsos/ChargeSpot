@@ -1,4 +1,4 @@
-practiseimport reducer from './reducer';
+import reducer from './reducer';
 import * as actionsType from './actions';
 
 describe('Auth reducer',()=>{
