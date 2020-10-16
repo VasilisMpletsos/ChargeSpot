@@ -204,7 +204,7 @@ const Settings = (props) => {
           <DialogContentText className={classes.DialogContent} id='alert-dialog-description'>
             Here you can see your remaining money. Thanks for using our platform and helping the enviroment by charging with 100% renewable energy.
           </DialogContentText>
-          <div className={classes.Money}>{accountBalance.toFixed(2)} €</div>
+          <div className={classes.Money}>{accountBalance} €</div>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => toggleAccountDialog(false)} color='primary'>

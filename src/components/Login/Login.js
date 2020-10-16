@@ -56,28 +56,48 @@ const Login = () => {
     if (error) {
       showMessage(message, "error");
     } else {
-      axios
-        .post("/login", state)
-        .then((response) => {
-          console.log(response.data);
-          message = "Login Sent!";
-          showMessage(message, "success");
-          document.getElementById("loginForm").reset();
-          if (response.data.auth) {
-            clientAuth();
-            setUserName(state.username);
-            setAccountBalance(response.data.account);
-            setLastCharges(response.data.lastCharges);
-            if (prefersDark !== response.data.prefersDark) {
-              toogleDarkState();
-            }
-            history.push("/products");
-          }
-        })
-        .catch((error) => {
-          message = "Server Unavaible";
-          showMessage(message, "error");
-        });
+      fetch("http://127.0.0.1:8000/api/token/",{
+        headers: {'Accept': 'application/json,text/plain, */*','Content-Type': 'application/json'},
+        method: 'POST',
+        body: JSON.stringify(state),
+      })
+      .then(response => {
+        return response.json()
+      }).then((response)=>{
+          let token = response.access;
+          localStorage.setItem("jwtToken", 'Bearer ' + token);
+          console.log(localStorage.getItem('jwtToken'));
+          fetch("http://127.0.0.1:8000/api/find_user/",{
+              headers: {'Accept': 'application/json,text/plain, */*',
+              'Content-Type': 'application/json',
+              'Authorization': localStorage.getItem('jwtToken')},
+              method: 'get'
+            }).then((response)=>{
+              return response.json()
+            }).then((response)=>{
+              console.log(response.results[0])
+              clientAuth()
+              setUserName(response.results[0].username)
+              fetch(response.results[0].profile,{
+                headers: {'Accept': 'application/json,text/plain, */*',
+              'Content-Type': 'application/json',
+              'Authorization': localStorage.getItem('jwtToken')},
+                method: 'get'
+              }).then((response)=>{
+                return response.json()
+              }).then((response)=>{
+                if (prefersDark !== response.prefersDark) {
+                  toogleDarkState();
+                }
+                console.log(response)
+                setAccountBalance(response.account);
+                // setLastCharges(response.lastCharges);
+                history.push("/products");
+              })
+            })
+      }).catch((error)=>{
+        console.log(error)
+      })
     }
   };
 
