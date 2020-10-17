@@ -75,7 +75,6 @@ const Login = () => {
             }).then((response)=>{
               return response.json()
             }).then((response)=>{
-              console.log(response.results[0])
               clientAuth()
               setUserName(response.results[0].username)
               fetch(response.results[0].profile,{
