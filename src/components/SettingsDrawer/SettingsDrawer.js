@@ -13,7 +13,7 @@ import { DialogTitle, Dialog, DialogContent, DialogContentText, DialogActions } 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import axios from "../../AxiosBase";
-import * as actionTypes from "../../store/actions";
+import * as actionTypes from "../../store/actions/actions";
 import classes from "./SettingsDrawer.module.css";
 
 const StyledTextField = withStyles({

@@ -1,4 +1,4 @@
-import * as actionsType from "./actions";
+import * as actionsType from "./actions/actions";
 
 const initialState = {
   auth: false,
@@ -44,6 +44,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         lastCharges: action.lastCharges,
+      };
+    case actionsType.LOGIN:
+      return {
+        ...state,
+        auth: action.auth,
       };
     default:
       return state;

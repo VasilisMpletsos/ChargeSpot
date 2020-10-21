@@ -12,7 +12,7 @@ import validator from "validator";
 import Paper from "@material-ui/core/Paper";
 import axios from "../../AxiosBase";
 import { useHistory } from "react-router-dom";
-import * as actionTypes from "../../store/actions";
+import * as actionTypes from "../../store/actions/actions";
 
 const Login = () => {
   // History for redirect
@@ -26,6 +26,7 @@ const Login = () => {
   const setAccountBalance = useCallback((account) => dispatch({ type: actionTypes.setAccountBalance, account: account }), [dispatch]);
   const setLastCharges = useCallback((lastCharges) => dispatch({ type: actionTypes.setLastCharges, lastCharges: lastCharges }), [dispatch]);
   const toogleDarkState = useCallback(() => dispatch({ type: actionTypes.darkMode }), [dispatch]);
+  const login = useCallback((name, password) => dispatch({ type: actionTypes.LOGIN, name: name, password: password }), [dispatch]);
 
   const [state, changeState] = useState({
     username: "",
@@ -56,47 +57,8 @@ const Login = () => {
     if (error) {
       showMessage(message, "error");
     } else {
-      fetch("http://127.0.0.1:8000/api/token/",{
-        headers: {'Accept': 'application/json,text/plain, */*','Content-Type': 'application/json'},
-        method: 'POST',
-        body: JSON.stringify(state),
-      })
-      .then(response => {
-        return response.json()
-      }).then((response)=>{
-          let token = response.access;
-          localStorage.setItem("jwtToken", 'Bearer ' + token);
-          console.log(localStorage.getItem('jwtToken'));
-          fetch("http://127.0.0.1:8000/api/find_user/",{
-              headers: {'Accept': 'application/json,text/plain, */*',
-              'Content-Type': 'application/json',
-              'Authorization': localStorage.getItem('jwtToken')},
-              method: 'get'
-            }).then((response)=>{
-              return response.json()
-            }).then((response)=>{
-              clientAuth()
-              setUserName(response.results[0].username)
-              fetch(response.results[0].profile,{
-                headers: {'Accept': 'application/json,text/plain, */*',
-              'Content-Type': 'application/json',
-              'Authorization': localStorage.getItem('jwtToken')},
-                method: 'get'
-              }).then((response)=>{
-                return response.json()
-              }).then((response)=>{
-                if (prefersDark !== response.prefersDark) {
-                  toogleDarkState();
-                }
-                console.log(response)
-                setAccountBalance(response.account);
-                // setLastCharges(response.lastCharges);
-                history.push("/products");
-              })
-            })
-      }).catch((error)=>{
-        console.log(error)
-      })
+      history.push("/products");
+      login(state.username, state.password);
     }
   };
 

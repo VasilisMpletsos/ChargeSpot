@@ -5,7 +5,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { lime, blue } from "@material-ui/core/colors";
 import { useSelector, useDispatch } from "react-redux";
-import * as actionTypes from "./store/actions";
+import * as actionTypes from "./store/actions/actions";
 
 const App = () => {
   const darkState = useSelector((state) => state.prefersDark);
