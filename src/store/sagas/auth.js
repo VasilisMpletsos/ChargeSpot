@@ -1,6 +1,6 @@
 import { call , put } from 'redux-saga/effects';
 import * as actionTypes from '../actions/actions';
-import { fetchToken , fetchUser , fetchProfile } from './api';
+import { fetchToken , fetchUser , fetchProfile } from './api';  
 
 export function* login(action){
   try{
@@ -28,6 +28,9 @@ export function* login(action){
       yield put({type: actionTypes.AUTHENTICATE})
       let profile = yield call(fetchProfile,user.profile)
       yield put({type: actionTypes.setAccountBalance, account: profile.account})
+      if(action.prefersDark!==profile.prefersDark){
+        yield put({type: actionTypes.darkMode})
+      }
     }
   }catch(error){
     console.log(error)

@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 
 const Products = () => {
   //Redux Store
-  const auth = useSelector((state) => state.auth);
+  let auth = useSelector((state) => state.auth);
 
   return (
     <div>

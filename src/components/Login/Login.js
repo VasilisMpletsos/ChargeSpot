@@ -13,6 +13,7 @@ import Paper from "@material-ui/core/Paper";
 import axios from "../../AxiosBase";
 import { useHistory } from "react-router-dom";
 import * as actionTypes from "../../store/actions/actions";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Login = () => {
   // History for redirect
@@ -39,8 +40,11 @@ const Login = () => {
     changeState(initialState);
   };
 
+  const [loading, setLoading] = React.useState(false)
+
   const sendHandler = (event) => {
     event.preventDefault();
+    setLoading(true);
     let error = false;
     let message = "";
 
@@ -57,8 +61,11 @@ const Login = () => {
     if (error) {
       showMessage(message, "error");
     } else {
-      history.push("/products");
-      login(state.username, state.password);
+      login(state.username, state.password, prefersDark);
+      setTimeout(()=>{
+        console.log('Trying to move to products')
+        history.push("/products")
+      },1000)
     }
   };
 
@@ -88,6 +95,7 @@ const Login = () => {
     errorName: false,
     errorPassword: false,
   });
+
 
   return (
     <Paper>
@@ -119,7 +127,7 @@ const Login = () => {
             </Grid>
           </Grid>
           <Box className={classes.SendBox}>
-            <Button
+            { loading ? <CircularProgress /> : <Button
               className={classes.Sendbutton}
               type='submit'
               disabled={state.username.length === 0 || state.password.length === 0}
@@ -128,7 +136,7 @@ const Login = () => {
               startIcon={<SendIcon />}
             >
               Send
-            </Button>
+            </Button>}
           </Box>
         </form>
         <Snackbar open={showInfo.show} autoHideDuration={10000} onClose={closeHandler} anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
