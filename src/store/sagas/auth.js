@@ -1,3 +1,4 @@
+import { ContactsOutlined } from '@material-ui/icons';
 import { call , put } from 'redux-saga/effects';
 import * as actionTypes from '../actions/actions';
 import { fetchToken , fetchUser , fetchProfile } from './api';  
@@ -5,9 +6,7 @@ import { fetchToken , fetchUser , fetchProfile } from './api';
 export function* login(action){
   try{
 
-    localStorage.removeItem('jwtToken')
-
-    // get token!
+    console.log(localStorage.getItem('jwtToken'))
     let auth;
     const data = yield call(fetchToken, action.name, action.password)
     if (data.detail===undefined){
