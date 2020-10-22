@@ -234,9 +234,9 @@ const Settings = (props) => {
                 <TableBody>
                   <TableRow>
                     <TableCell>{data.date}</TableCell>
-                    <TableCell>{data.duration} minutes</TableCell>
+                    <TableCell align="center">{data.duration}</TableCell>
                     <TableCell>{data.location}</TableCell>
-                    <TableCell>{data.price.toFixed(2)} €</TableCell>
+                    <TableCell>{data.money} €</TableCell>
                   </TableRow>
                 </TableBody>
               ))}

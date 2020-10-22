@@ -36,5 +36,30 @@ export const fetchProfile = async (url) => {
       return data.json()
 }
 
+export const fetchHistory = async (url) => {
+  const data = await fetch(url,{
+      headers: {'Accept': 'application/json,text/plain, */*',
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('jwtToken')},
+      method: 'GET',
+    }).catch((error)=>{
+      console.log(error)
+    })
+    return data.json()
+}
+
+export const fetchSpot = async(url) => {
+  const data = await fetch(url,{
+    headers: {'Accept': 'application/json,text/plain, */*',
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem('jwtToken')},
+    method: 'GET',
+  }).catch((error)=>{
+    console.log(error)
+  })
+  return data.json()
+}
+
+
 
 
